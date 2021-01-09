@@ -58,6 +58,5 @@ class MemoWindowController: NSWindowController, NSWindowDelegate, MemoDelegate {
         let dy = endPoint.y - startPoint.y
         window.setFrameOrigin(window.frame.origin.offsetBy(dx: dx, dy: dy))
     }
-    
 
 }

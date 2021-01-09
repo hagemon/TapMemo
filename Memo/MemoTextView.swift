@@ -49,7 +49,9 @@ class MemoTextView: NSTextView, NSTextViewDelegate {
         self.isActive = false
     }
     
+    
     override func mouseDown(with event: NSEvent) {
+        super.mouseDown(with: event)
         self.lastPoint = event.locationInWindow
         if event.clickCount == 2 {
             self.active()

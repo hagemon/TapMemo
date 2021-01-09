@@ -24,8 +24,8 @@ class MemoManager: NSObject {
         let controller = MemoWindowController(window: window)
         
         self.controllers.append(controller)
-        window.makeFirstResponder(view)
-        window.makeKeyAndOrderFront(view)
+//        window.makeFirstResponder(view)
+//        window.makeKeyAndOrderFront(view)
         controller.showWindow(nil)
     }
     
