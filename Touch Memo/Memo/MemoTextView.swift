@@ -10,8 +10,6 @@ import Carbon
 
 class MemoTextView: NSTextView, NSTextViewDelegate {
     
-//    weak var memoDelegate: MemoDelegate?
-    weak var superScrollView: MemoScrollView?
     var isActive = true {
         didSet {
             self.isEditable = self.isActive
@@ -41,28 +39,34 @@ class MemoTextView: NSTextView, NSTextViewDelegate {
         fatalError("init(coder:) has not been implemented")
     }
         
-    func active() {
+    func activate() {
         self.isActive = true
     }
     
-    func deactive() {
+    func deactivate() {
         self.isActive = false
     }
     
-    
     override func mouseDown(with event: NSEvent) {
         super.mouseDown(with: event)
-        self.lastPoint = event.locationInWindow
         if event.clickCount == 2 {
-            self.active()
+            self.activate()
         }
+        guard !self.isActive,
+              let window = self.window
+        else { return }
+        window.performDrag(with: event)
     }
     
     override func keyDown(with event: NSEvent) {
         if !self.hasMarkedText() && event.keyCode == kVK_Escape {
-            self.deactive()
+            self.deactivate()
         }else{
             super.keyDown(with: event)
         }
+    }
+    
+    override func acceptsFirstMouse(for event: NSEvent?) -> Bool {
+        return true
     }
 }

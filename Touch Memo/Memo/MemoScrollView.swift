@@ -20,7 +20,6 @@ class MemoScrollView: NSScrollView, NSTextViewDelegate {
     init(frame frameRect: NSRect, textView: MemoTextView) {
         super.init(frame: frameRect)
         self.documentView = textView
-        textView.superScrollView = self
         self.memoTextView = textView
         self.hasVerticalScroller = true
     }
@@ -28,6 +27,5 @@ class MemoScrollView: NSScrollView, NSTextViewDelegate {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
     
 }

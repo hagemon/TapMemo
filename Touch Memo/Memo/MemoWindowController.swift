@@ -7,7 +7,7 @@
 
 import Cocoa
 
-class MemoWindowController: NSWindowController, NSWindowDelegate, MemoDelegate {
+class MemoWindowController: NSWindowController, NSWindowDelegate {
     
     var memoWindow: MemoWindow?
     var memoScrollView: MemoScrollView?
@@ -20,8 +20,6 @@ class MemoWindowController: NSWindowController, NSWindowDelegate, MemoDelegate {
         window.delegate = self
         self.memoScrollView = window.memoScrollView
         self.memoTextView = window.memoTextView
-//        guard let textView = self.memoTextView else { return }
-//        textView.memoDelegate = self
     }
     
     required init?(coder: NSCoder) {
@@ -47,16 +45,8 @@ class MemoWindowController: NSWindowController, NSWindowDelegate, MemoDelegate {
         )
     }
     
-    func windowWillMove(_ notification: Notification) {
-        self.isMoved = true
-    }
-    
-    func drag(from startPoint: NSPoint, to endPoint: NSPoint) {
-        guard let window = self.memoWindow
-        else { return }
-        let dx = endPoint.x - startPoint.x
-        let dy = endPoint.y - startPoint.y
-        window.setFrameOrigin(window.frame.origin.offsetBy(dx: dx, dy: dy))
-    }
+//    func windowWillMove(_ notification: Notification) {
+//        self.isMoved = true
+//    }
 
 }

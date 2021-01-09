@@ -6,7 +6,3 @@
 //
 
 import Foundation
-
-protocol MemoDelegate: class {
-    func drag(from startPoint: NSPoint, to endPoint: NSPoint)
-}

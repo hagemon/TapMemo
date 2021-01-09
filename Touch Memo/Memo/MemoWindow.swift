@@ -22,12 +22,12 @@ class MemoWindow: NSWindow {
         self.memoScrollView = contentView
         guard let textView = contentView.memoTextView else { return }
         self.memoTextView = textView
-        
     }
 
     override func resignKey() {
         super.resignKey()
         guard let textView = self.memoTextView else { return }
-        textView.deactive()
+        textView.deactivate()
     }
+    
 }
