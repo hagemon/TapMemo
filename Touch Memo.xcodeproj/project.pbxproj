@@ -55,9 +55,6 @@
 		3AE1F37E25A9653100A38694 = {
 			isa = PBXGroup;
 			children = (
-				3AE1F3A125A971EB00A38694 /* Utils */,
-				3AE1F3A025A971E400A38694 /* Manager */,
-				3AE1F3A225A971F300A38694 /* Memo */,
 				3AE1F3CF25A98D3300A38694 /* Touch Memo */,
 				3AE1F38825A9653100A38694 /* Products */,
 			);
@@ -103,6 +100,9 @@
 		3AE1F3CF25A98D3300A38694 /* Touch Memo */ = {
 			isa = PBXGroup;
 			children = (
+				3AE1F3A125A971EB00A38694 /* Utils */,
+				3AE1F3A025A971E400A38694 /* Manager */,
+				3AE1F3A225A971F300A38694 /* Memo */,
 				3AE1F3D025A98D3300A38694 /* ViewController.swift */,
 				3AE1F3D125A98D3300A38694 /* Assets.xcassets */,
 				3AE1F3D225A98D3300A38694 /* Main.storyboard */,
