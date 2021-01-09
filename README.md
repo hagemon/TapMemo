@@ -16,6 +16,5 @@ A convenient, clean memo app for macOS.
 
 # Todo
 
-- Drag window directly by content view.
 - Some simple markdown sign support.
 - Store & manage memos with dashboard.
