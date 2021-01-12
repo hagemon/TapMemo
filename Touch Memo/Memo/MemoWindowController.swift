@@ -34,9 +34,11 @@ class MemoWindowController: NSWindowController, NSWindowDelegate {
     
     func windowDidResize(_ notification: Notification) {
         guard let textView = self.memoTextView,
-              let scrollView = self.memoScrollView
+              let scrollView = self.memoScrollView,
+              let window = self.memoWindow
         else { return }
         textView.setFrameSize(scrollView.contentSize)
+        window.resetToolRect()
     }
     
     func windowWillClose(_ notification: Notification) {

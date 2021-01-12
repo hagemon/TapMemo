@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3A6F0D7525AC88560089BC2F /* KeyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6F0D7425AC88560089BC2F /* KeyManager.swift */; };
+		3A6F0D7825AC88D00089BC2F /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6F0D7725AC88D00089BC2F /* Storage.swift */; };
+		3A6F0D7D25AC8DCC0089BC2F /* PreferencesWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6F0D7C25AC8DCC0089BC2F /* PreferencesWindow.swift */; };
+		3A6F0D8025AC8DD90089BC2F /* Preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A6F0D7F25AC8DD90089BC2F /* Preferences.xib */; };
 		3AE1F39D25A9655200A38694 /* HotKey in Frameworks */ = {isa = PBXBuildFile; productRef = 3AE1F39C25A9655200A38694 /* HotKey */; };
 		3AE1F3A525A9722200A38694 /* Extentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE1F3A425A9722200A38694 /* Extentions.swift */; };
 		3AE1F3A925A9722D00A38694 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE1F3A825A9722D00A38694 /* Enums.swift */; };
@@ -15,7 +19,6 @@
 		3AE1F3B225A9727600A38694 /* MemoWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE1F3B125A9727600A38694 /* MemoWindow.swift */; };
 		3AE1F3B825A97EA200A38694 /* MemoScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE1F3B725A97EA200A38694 /* MemoScrollView.swift */; };
 		3AE1F3BB25A97EB200A38694 /* MemoTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE1F3BA25A97EB200A38694 /* MemoTextView.swift */; };
-		3AE1F3D725A98D3400A38694 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE1F3D025A98D3300A38694 /* ViewController.swift */; };
 		3AE1F3DA25A98D3400A38694 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE1F3D425A98D3300A38694 /* AppDelegate.swift */; };
 		3AE1F3E525A98F2F00A38694 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3AE1F3D125A98D3300A38694 /* Assets.xcassets */; };
 		3AE1F3E725A98F3300A38694 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3AE1F3D225A98D3300A38694 /* Main.storyboard */; };
@@ -23,6 +26,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3A6F0D7425AC88560089BC2F /* KeyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyManager.swift; sourceTree = "<group>"; };
+		3A6F0D7725AC88D00089BC2F /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
+		3A6F0D7C25AC8DCC0089BC2F /* PreferencesWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesWindow.swift; sourceTree = "<group>"; };
+		3A6F0D7F25AC8DD90089BC2F /* Preferences.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Preferences.xib; sourceTree = "<group>"; };
 		3AE1F38725A9653100A38694 /* Touch Memo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Touch Memo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3AE1F3A425A9722200A38694 /* Extentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extentions.swift; sourceTree = "<group>"; };
 		3AE1F3A825A9722D00A38694 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
@@ -31,7 +38,6 @@
 		3AE1F3B125A9727600A38694 /* MemoWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoWindow.swift; sourceTree = "<group>"; };
 		3AE1F3B725A97EA200A38694 /* MemoScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoScrollView.swift; sourceTree = "<group>"; };
 		3AE1F3BA25A97EB200A38694 /* MemoTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoTextView.swift; sourceTree = "<group>"; };
-		3AE1F3D025A98D3300A38694 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		3AE1F3D125A98D3300A38694 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3AE1F3D325A98D3300A38694 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3AE1F3D425A98D3300A38694 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -52,6 +58,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3A6F0D7A25AC8D150089BC2F /* Preferences */ = {
+			isa = PBXGroup;
+			children = (
+				3A6F0D7C25AC8DCC0089BC2F /* PreferencesWindow.swift */,
+				3A6F0D7F25AC8DD90089BC2F /* Preferences.xib */,
+			);
+			path = Preferences;
+			sourceTree = "<group>";
+		};
 		3AE1F37E25A9653100A38694 = {
 			isa = PBXGroup;
 			children = (
@@ -72,6 +87,8 @@
 			isa = PBXGroup;
 			children = (
 				3AE1F3AB25A9723E00A38694 /* MemoManager.swift */,
+				3A6F0D7425AC88560089BC2F /* KeyManager.swift */,
+				3A6F0D7725AC88D00089BC2F /* Storage.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -103,7 +120,7 @@
 				3AE1F3A125A971EB00A38694 /* Utils */,
 				3AE1F3A025A971E400A38694 /* Manager */,
 				3AE1F3A225A971F300A38694 /* Memo */,
-				3AE1F3D025A98D3300A38694 /* ViewController.swift */,
+				3A6F0D7A25AC8D150089BC2F /* Preferences */,
 				3AE1F3D125A98D3300A38694 /* Assets.xcassets */,
 				3AE1F3D225A98D3300A38694 /* Main.storyboard */,
 				3AE1F3D425A98D3300A38694 /* AppDelegate.swift */,
@@ -177,6 +194,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3AE1F3E725A98F3300A38694 /* Main.storyboard in Resources */,
+				3A6F0D8025AC8DD90089BC2F /* Preferences.xib in Resources */,
 				3AE1F3E525A98F2F00A38694 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -191,12 +209,14 @@
 				3AE1F3A525A9722200A38694 /* Extentions.swift in Sources */,
 				3AE1F3B225A9727600A38694 /* MemoWindow.swift in Sources */,
 				3AE1F3AF25A9726700A38694 /* MemoWindowController.swift in Sources */,
+				3A6F0D7525AC88560089BC2F /* KeyManager.swift in Sources */,
+				3A6F0D7D25AC8DCC0089BC2F /* PreferencesWindow.swift in Sources */,
 				3AE1F3DA25A98D3400A38694 /* AppDelegate.swift in Sources */,
+				3A6F0D7825AC88D00089BC2F /* Storage.swift in Sources */,
 				3AE1F3AC25A9723E00A38694 /* MemoManager.swift in Sources */,
 				3AE1F3BB25A97EB200A38694 /* MemoTextView.swift in Sources */,
 				3AE1F3EA25A9A9A600A38694 /* Protocols.swift in Sources */,
 				3AE1F3A925A9722D00A38694 /* Enums.swift in Sources */,
-				3AE1F3D725A98D3400A38694 /* ViewController.swift in Sources */,
 				3AE1F3B825A97EA200A38694 /* MemoScrollView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -346,7 +366,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "hagemon.Touch-Memo";
+				PRODUCT_BUNDLE_IDENTIFIER = "w2fzu.hagemon.Touch-Memo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 			};
@@ -368,7 +388,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "hagemon.Touch-Memo";
+				PRODUCT_BUNDLE_IDENTIFIER = "w2fzu.hagemon.Touch-Memo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 			};
