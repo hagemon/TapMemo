@@ -8,7 +8,9 @@
 import Cocoa
 import Carbon
 
-class MemoTextView: NSTextView, NSTextViewDelegate {
+class MemoTextView: NSTextView {
+    
+    var memo: Memo?
     
     var isActive = true {
         didSet {
@@ -25,11 +27,18 @@ class MemoTextView: NSTextView, NSTextViewDelegate {
         // Drawing code here.
     }
     
-    override init(frame frameRect: NSRect) {
+    init(frame frameRect:NSRect, memo:Memo) {
         super.init(frame: frameRect)
         self.font = .systemFont(ofSize: 15)
-        self.delegate = self
+        self.memo = memo
+        self.string = memo.content
     }
+    
+//    override init(frame frameRect: NSRect) {
+//        super.init(frame: frameRect)
+//        self.font = .systemFont(ofSize: 15)
+//
+//    }
     
     override init(frame frameRect: NSRect, textContainer container: NSTextContainer?) {
         super.init(frame: frameRect, textContainer: container)
@@ -45,6 +54,11 @@ class MemoTextView: NSTextView, NSTextViewDelegate {
     
     func deactivate() {
         self.isActive = false
+        guard let memo = self.memo,
+              self.string.count > 0
+        else { return }
+        memo.update(content: self.string)
+        Storage.saveMemo(memo: memo)
     }
     
     override func mouseDown(with event: NSEvent) {

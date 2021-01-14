@@ -26,7 +26,7 @@ class PreferencesWindow: NSWindow {
             }
             return nil
         })
-        self.level = .floating
+        self.level = .normal
         super.awakeFromNib()
         KeyManager.shared.pauseHotKey()
     }

@@ -11,6 +11,10 @@
 		3A6F0D7825AC88D00089BC2F /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6F0D7725AC88D00089BC2F /* Storage.swift */; };
 		3A6F0D7D25AC8DCC0089BC2F /* PreferencesWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6F0D7C25AC8DCC0089BC2F /* PreferencesWindow.swift */; };
 		3A6F0D8025AC8DD90089BC2F /* Preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A6F0D7F25AC8DD90089BC2F /* Preferences.xib */; };
+		3A6F0D9325ADD33E0089BC2F /* MemoSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6F0D9225ADD33E0089BC2F /* MemoSplitViewController.swift */; };
+		3AAA904E25AEC0BF00323743 /* MemoSideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAA904D25AEC0BF00323743 /* MemoSideViewController.swift */; };
+		3AAA905125AEC0D600323743 /* MemoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAA905025AEC0D600323743 /* MemoDetailViewController.swift */; };
+		3AAA905525AF3C3300323743 /* Memo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAA905425AF3C3300323743 /* Memo.swift */; };
 		3AE1F39D25A9655200A38694 /* HotKey in Frameworks */ = {isa = PBXBuildFile; productRef = 3AE1F39C25A9655200A38694 /* HotKey */; };
 		3AE1F3A525A9722200A38694 /* Extentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE1F3A425A9722200A38694 /* Extentions.swift */; };
 		3AE1F3A925A9722D00A38694 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE1F3A825A9722D00A38694 /* Enums.swift */; };
@@ -30,6 +34,10 @@
 		3A6F0D7725AC88D00089BC2F /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		3A6F0D7C25AC8DCC0089BC2F /* PreferencesWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesWindow.swift; sourceTree = "<group>"; };
 		3A6F0D7F25AC8DD90089BC2F /* Preferences.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Preferences.xib; sourceTree = "<group>"; };
+		3A6F0D9225ADD33E0089BC2F /* MemoSplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoSplitViewController.swift; sourceTree = "<group>"; };
+		3AAA904D25AEC0BF00323743 /* MemoSideViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoSideViewController.swift; sourceTree = "<group>"; };
+		3AAA905025AEC0D600323743 /* MemoDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoDetailViewController.swift; sourceTree = "<group>"; };
+		3AAA905425AF3C3300323743 /* Memo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Memo.swift; sourceTree = "<group>"; };
 		3AE1F38725A9653100A38694 /* Touch Memo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Touch Memo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3AE1F3A425A9722200A38694 /* Extentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extentions.swift; sourceTree = "<group>"; };
 		3AE1F3A825A9722D00A38694 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
@@ -65,6 +73,24 @@
 				3A6F0D7F25AC8DD90089BC2F /* Preferences.xib */,
 			);
 			path = Preferences;
+			sourceTree = "<group>";
+		};
+		3AAA904B25AEC06D00323743 /* MemoSplit */ = {
+			isa = PBXGroup;
+			children = (
+				3A6F0D9225ADD33E0089BC2F /* MemoSplitViewController.swift */,
+				3AAA904D25AEC0BF00323743 /* MemoSideViewController.swift */,
+				3AAA905025AEC0D600323743 /* MemoDetailViewController.swift */,
+			);
+			path = MemoSplit;
+			sourceTree = "<group>";
+		};
+		3AAA905325AF3C2800323743 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3AAA905425AF3C3300323743 /* Memo.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		3AE1F37E25A9653100A38694 = {
@@ -117,9 +143,11 @@
 		3AE1F3CF25A98D3300A38694 /* Touch Memo */ = {
 			isa = PBXGroup;
 			children = (
+				3AAA905325AF3C2800323743 /* Model */,
 				3AE1F3A125A971EB00A38694 /* Utils */,
 				3AE1F3A025A971E400A38694 /* Manager */,
 				3AE1F3A225A971F300A38694 /* Memo */,
+				3AAA904B25AEC06D00323743 /* MemoSplit */,
 				3A6F0D7A25AC8D150089BC2F /* Preferences */,
 				3AE1F3D125A98D3300A38694 /* Assets.xcassets */,
 				3AE1F3D225A98D3300A38694 /* Main.storyboard */,
@@ -209,12 +237,16 @@
 				3AE1F3A525A9722200A38694 /* Extentions.swift in Sources */,
 				3AE1F3B225A9727600A38694 /* MemoWindow.swift in Sources */,
 				3AE1F3AF25A9726700A38694 /* MemoWindowController.swift in Sources */,
+				3AAA905525AF3C3300323743 /* Memo.swift in Sources */,
+				3AAA904E25AEC0BF00323743 /* MemoSideViewController.swift in Sources */,
 				3A6F0D7525AC88560089BC2F /* KeyManager.swift in Sources */,
 				3A6F0D7D25AC8DCC0089BC2F /* PreferencesWindow.swift in Sources */,
 				3AE1F3DA25A98D3400A38694 /* AppDelegate.swift in Sources */,
 				3A6F0D7825AC88D00089BC2F /* Storage.swift in Sources */,
 				3AE1F3AC25A9723E00A38694 /* MemoManager.swift in Sources */,
 				3AE1F3BB25A97EB200A38694 /* MemoTextView.swift in Sources */,
+				3AAA905125AEC0D600323743 /* MemoDetailViewController.swift in Sources */,
+				3A6F0D9325ADD33E0089BC2F /* MemoSplitViewController.swift in Sources */,
 				3AE1F3EA25A9A9A600A38694 /* Protocols.swift in Sources */,
 				3AE1F3A925A9722D00A38694 /* Enums.swift in Sources */,
 				3AE1F3B825A97EA200A38694 /* MemoScrollView.swift in Sources */,

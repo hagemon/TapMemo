@@ -13,24 +13,28 @@ class MemoManager: NSObject {
     var controllers: [MemoWindowController] = []
     let offset:CGFloat = 30
     
-    func createMemo() {
-        guard let rect = self.defaultRect() else { return }
+    func createMemo(memo: Memo=Memo(title: "No title", date: Date(timeIntervalSinceNow: 0), content: "")) {
+        guard let rect = self.defaultRect() else {
+            print("Could not get default rect in MemoManager.createMemo")
+            return
+        }
         NSApplication.shared.activate(ignoringOtherApps: true)
-        
+            
         let originRect = NSRect(origin: .zero, size: rect.size)
-        let view = MemoTextView(frame: originRect)
+        let view = MemoTextView(frame: originRect, memo: memo)
         let scrollView = MemoScrollView(frame: originRect, textView: view)
         let window = MemoWindow(contentRect: rect, contentView: scrollView)
         let controller = MemoWindowController(window: window)
         
         self.controllers.append(controller)
-//        window.makeFirstResponder(view)
-//        window.makeKeyAndOrderFront(view)
         controller.showWindow(nil)
     }
     
     private func defaultRect() -> NSRect? {
-        guard let screen = NSScreen.main else { return nil }
+        guard let screen = NSScreen.main else {
+            print("Could not get screen in MemoManager.defaultRect")
+            return nil
+        }
         let rect = screen.frame
         let width = rect.width / 4
         let height = rect.height / 3

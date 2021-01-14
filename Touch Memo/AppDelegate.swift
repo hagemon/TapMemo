@@ -23,11 +23,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         self.statusItem.menu = NSMenu(title: "Touch Memo")
         guard let menu = self.statusItem.menu else { return }
-        menu.addItem(withTitle: "Memos", action: nil, keyEquivalent: "m")
-        menu.addItem(withTitle: "Preferences", action: #selector(openPreferences), keyEquivalent: "p")
+        menu.addItem(withTitle: "Memos", action: #selector(self.openMemos), keyEquivalent: "m")
+        menu.addItem(withTitle: "Preferences", action: #selector(self.openPreferences), keyEquivalent: "p")
         menu.addItem(.separator())
-        menu.addItem(withTitle: "Quit", action: #selector(exit), keyEquivalent: "q")
-        
+        menu.addItem(withTitle: "Quit", action: #selector(self.exit), keyEquivalent: "q")
+        // Storage.removeAllMemos()
+        self.openMemos()
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
@@ -42,6 +43,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let controller = NSWindowController(windowNibName: "Preferences")
         NSApplication.shared.activate(ignoringOtherApps: true)
         controller.showWindow(nil)
+    }
+    
+    @objc func openMemos() {
+        let storyboard = NSStoryboard.main!
+        let windowController = storyboard.instantiateController(withIdentifier: "Memos") as! NSWindowController
+        NSApplication.shared.activate(ignoringOtherApps: true)
+        windowController.showWindow(nil)
+        
     }
 
 

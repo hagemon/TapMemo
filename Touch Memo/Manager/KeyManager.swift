@@ -21,12 +21,18 @@ class KeyManager: NSObject {
     }
     
     func pauseHotKey() {
-        guard let hotKey = self.hotKey else { return }
+        guard let hotKey = self.hotKey else {
+            print("Could not get hotkey in KeyManager.hotKey")
+            return
+        }
         hotKey.isPaused = true
     }
     
     func resignHotKey() {
-        guard let hotKey = self.hotKey else { return }
+        guard let hotKey = self.hotKey else {
+            print("Could not get hotkey in KeyManager.hotKey")
+            return
+        }
         hotKey.isPaused = false
     }
     

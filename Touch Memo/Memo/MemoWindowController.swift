@@ -36,7 +36,10 @@ class MemoWindowController: NSWindowController, NSWindowDelegate {
         guard let textView = self.memoTextView,
               let scrollView = self.memoScrollView,
               let window = self.memoWindow
-        else { return }
+        else {
+            print("Could not get views when window resize")
+            return
+        }
         textView.setFrameSize(scrollView.contentSize)
         window.resetToolRect()
     }
@@ -46,9 +49,5 @@ class MemoWindowController: NSWindowController, NSWindowDelegate {
             at:MemoManager.shared.controllers.firstIndex(of: self)!
         )
     }
-    
-//    func windowWillMove(_ notification: Notification) {
-//        self.isMoved = true
-//    }
 
 }
