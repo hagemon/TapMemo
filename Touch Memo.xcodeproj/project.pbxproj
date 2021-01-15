@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3A5F2BCC25B17F5F00359B76 /* MemoDetailTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5F2BCB25B17F5F00359B76 /* MemoDetailTextView.swift */; };
 		3A6F0D7525AC88560089BC2F /* KeyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6F0D7425AC88560089BC2F /* KeyManager.swift */; };
 		3A6F0D7825AC88D00089BC2F /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6F0D7725AC88D00089BC2F /* Storage.swift */; };
 		3A6F0D7D25AC8DCC0089BC2F /* PreferencesWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6F0D7C25AC8DCC0089BC2F /* PreferencesWindow.swift */; };
@@ -30,6 +31,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3A5F2BCB25B17F5F00359B76 /* MemoDetailTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoDetailTextView.swift; sourceTree = "<group>"; };
 		3A6F0D7425AC88560089BC2F /* KeyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyManager.swift; sourceTree = "<group>"; };
 		3A6F0D7725AC88D00089BC2F /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		3A6F0D7C25AC8DCC0089BC2F /* PreferencesWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesWindow.swift; sourceTree = "<group>"; };
@@ -81,6 +83,7 @@
 				3A6F0D9225ADD33E0089BC2F /* MemoSplitViewController.swift */,
 				3AAA904D25AEC0BF00323743 /* MemoSideViewController.swift */,
 				3AAA905025AEC0D600323743 /* MemoDetailViewController.swift */,
+				3A5F2BCB25B17F5F00359B76 /* MemoDetailTextView.swift */,
 			);
 			path = MemoSplit;
 			sourceTree = "<group>";
@@ -240,6 +243,7 @@
 				3AAA905525AF3C3300323743 /* Memo.swift in Sources */,
 				3AAA904E25AEC0BF00323743 /* MemoSideViewController.swift in Sources */,
 				3A6F0D7525AC88560089BC2F /* KeyManager.swift in Sources */,
+				3A5F2BCC25B17F5F00359B76 /* MemoDetailTextView.swift in Sources */,
 				3A6F0D7D25AC8DCC0089BC2F /* PreferencesWindow.swift in Sources */,
 				3AE1F3DA25A98D3400A38694 /* AppDelegate.swift in Sources */,
 				3A6F0D7825AC88D00089BC2F /* Storage.swift in Sources */,

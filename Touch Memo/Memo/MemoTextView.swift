@@ -73,7 +73,9 @@ class MemoTextView: NSTextView {
     }
     
     override func keyDown(with event: NSEvent) {
-        if !self.hasMarkedText() && event.keyCode == kVK_Escape {
+        let code = event.keyCode
+        let flags = event.modifierFlags
+        if !self.hasMarkedText() && (code == kVK_Escape || (flags.contains(.command) && code == kVK_ANSI_S)) {
             self.deactivate()
         }else{
             super.keyDown(with: event)

@@ -24,6 +24,7 @@ extension Date {
 
 extension Notification.Name {
     static let detailViewShouldUpdate = Notification.Name(rawValue: "detailViewShouldUpdate")
-    static let detailViewLaunched = Notification.Name(rawValue: "detailViewLaunched")
+    static let detailViewDidLaunch = Notification.Name(rawValue: "detailViewDidLaunch")
+    static let detailViewDidSave = Notification.Name(rawValue: "detailViewDidSave")
     static let didSaveMemo = Notification.Name(rawValue: "didSaveMemo")
 }

@@ -13,7 +13,7 @@ class MemoManager: NSObject {
     var controllers: [MemoWindowController] = []
     let offset:CGFloat = 30
     
-    func createMemo(memo: Memo=Memo(title: "No title", date: Date(timeIntervalSinceNow: 0), content: "")) {
+    func createMemo(memo: Memo=Memo()) {
         guard let rect = self.defaultRect() else {
             print("Could not get default rect in MemoManager.createMemo")
             return

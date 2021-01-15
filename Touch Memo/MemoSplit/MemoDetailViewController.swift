@@ -14,7 +14,7 @@ class MemoDetailViewController: NSViewController, NSTextViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(self.updateContent(_:)), name: .detailViewShouldUpdate, object: nil)
-        NotificationCenter.default.post(name: .detailViewLaunched, object: nil, userInfo: ["controller":self])
+        NotificationCenter.default.post(name: .detailViewDidLaunch, object: nil, userInfo: ["controller":self])
     }
     
     @objc func updateContent(_ notification: Notification) {

@@ -15,8 +15,9 @@ class MemoSideViewController: NSViewController, NSTableViewDataSource, NSTableVi
         super.viewDidLoad()
         // Do view setup here.
         tableView.selectRowIndexes(IndexSet(integer: 0), byExtendingSelection: false)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.postTableviewCellSelected(_:)), name: .detailViewLaunched, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.postTableviewCellSelected(_:)), name: .detailViewDidLaunch, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.addMemo(_:)), name: .didSaveMemo, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.updateMemos(_:)), name: .detailViewDidSave, object: nil)
     }
     
     // MARK: - Datasource and Delegate
@@ -92,6 +93,20 @@ class MemoSideViewController: NSViewController, NSTableViewDataSource, NSTableVi
         }
         self.memos.insert(memo, at: 0)
         self.tableView.reloadData()
+    }
+    
+    @objc func updateMemos(_ notification:Notification) {
+        guard let info = notification.userInfo,
+              let content = info["content"] as? String
+        else { return }
+        let index = self.tableView.selectedRow
+        guard index >= 0 else {return}
+        let memo = self.memos[index]
+        memo.update(content: content)
+        self.memos.remove(at: index)
+        self.memos.insert(memo, at: 0)
+        Storage.saveMemo(memo: memo)
+        
     }
         
 }

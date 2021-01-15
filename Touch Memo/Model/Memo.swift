@@ -20,6 +20,13 @@ class Memo: NSObject, NSCoding {
         self.uuid = UUID().uuidString
     }
     
+    override init() {
+        self.title = "No Title"
+        self.date = Date(timeIntervalSinceNow: 0).toString()
+        self.content = ""
+        self.uuid = UUID().uuidString
+    }
+    
     required init?(coder: NSCoder) {
         guard let title = coder.decodeObject(forKey: "title") as? String,
               let date = coder.decodeObject(forKey: "date") as? String,
