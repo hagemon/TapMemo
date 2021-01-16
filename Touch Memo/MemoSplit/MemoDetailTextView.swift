@@ -24,9 +24,27 @@ class MemoDetailTextView: NSTextView {
                 super.keyDown(with: event)
                 return
             }
-            NotificationCenter.default.post(name: .detailViewDidSave, object: nil, userInfo: ["content":self.string])
+            MemoListManager.shared.saveSelectedMemo()
         }
         super.keyDown(with: event)
+    }
+    
+    override var isEditable: Bool {
+        get {
+            return !MemoListManager.shared.isEmpty
+        }
+        set {
+            super.isEditable = !MemoListManager.shared.isEmpty
+        }
+    }
+    
+    override var isSelectable: Bool {
+        get {
+            return !MemoListManager.shared.isEmpty
+        }
+        set {
+            super.isEditable = !MemoListManager.shared.isEmpty
+        }
     }
     
 }

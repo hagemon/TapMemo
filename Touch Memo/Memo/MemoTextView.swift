@@ -57,8 +57,12 @@ class MemoTextView: NSTextView {
         guard let memo = self.memo,
               self.string.count > 0
         else { return }
-        memo.update(content: self.string)
-        Storage.saveMemo(memo: memo)
+        if memo.changed {
+            memo.update(content: self.string)
+            Storage.saveMemo(memo: memo)
+            memo.changed = false
+        }
+        self.setSelectedRange(NSRange(location: self.string.count, length: 0))
     }
     
     override func mouseDown(with event: NSEvent) {
@@ -78,6 +82,8 @@ class MemoTextView: NSTextView {
         if !self.hasMarkedText() && (code == kVK_Escape || (flags.contains(.command) && code == kVK_ANSI_S)) {
             self.deactivate()
         }else{
+            guard let memo = self.memo else { return }
+            memo.changed = true
             super.keyDown(with: event)
         }
     }
