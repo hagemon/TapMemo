@@ -7,7 +7,7 @@
 
 import Cocoa
 
-class MemoDetailViewController: NSViewController, NSTextViewDelegate {
+class MemoDetailViewController: NSViewController, NSTextViewDelegate, MemoSideViewControllerDelegate {
 
     @IBOutlet var textView: NSTextView!
     
@@ -22,6 +22,22 @@ class MemoDetailViewController: NSViewController, NSTextViewDelegate {
               let content = info["content"] as? String
         else { return }
         self.textView.string = content
+    }
+    
+    func currentMemoContent() -> String {
+        return self.textView.string
+    }
+    
+    func textDidChange(_ notification: Notification) {
+        NotificationCenter.default.post(name: .detailViewTextDidChange, object: nil, userInfo: ["content":self.textView.string])
+    }
+    
+    @IBAction func createMemo(_ sender:Any) {
+        NotificationCenter.default.post(name: .detailViewDidCreateMemo, object: nil)
+    }
+    
+    @IBAction func pinMemo(_ sender:Any) {
+        NotificationCenter.default.post(name: .detailViewDidPinMemo, object: nil)
     }
     
 }

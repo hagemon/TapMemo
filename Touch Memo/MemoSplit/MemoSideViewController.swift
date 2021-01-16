@@ -11,6 +11,7 @@ class MemoSideViewController: NSViewController, NSTableViewDataSource, NSTableVi
 
     @IBOutlet weak var tableView: NSTableView!
     var memos = Storage.getMemos()
+    weak var MemoSideViewControllerDelegate: MemoSideViewControllerDelegate?
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
@@ -18,6 +19,8 @@ class MemoSideViewController: NSViewController, NSTableViewDataSource, NSTableVi
         NotificationCenter.default.addObserver(self, selector: #selector(self.postTableviewCellSelected(_:)), name: .detailViewDidLaunch, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.addMemo(_:)), name: .didSaveMemo, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.updateMemos(_:)), name: .detailViewDidSave, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.commonCreateMemo), name: .detailViewDidCreateMemo, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.commonPinMemo), name: .detailViewDidPinMemo, object: nil)
     }
     
     // MARK: - Datasource and Delegate
@@ -43,6 +46,15 @@ class MemoSideViewController: NSViewController, NSTableViewDataSource, NSTableVi
     }
     
     func tableView(_ tableView: NSTableView, shouldSelectRow row: Int) -> Bool {
+        guard let delegate = self.MemoSideViewControllerDelegate else { return false }
+        let oldRow = self.tableView.selectedRow
+        if oldRow >= 0{
+            let memo = self.memos[oldRow]
+            if memo.content != delegate.currentMemoContent() {
+                memo.update(content: delegate.currentMemoContent())
+                Storage.saveMemo(memo: memo)
+            }
+        }
         self.updateDetailContent(content: self.memos[row].content)
         return true
     }
@@ -73,6 +85,7 @@ class MemoSideViewController: NSViewController, NSTableViewDataSource, NSTableVi
               let info = notification.userInfo,
               let controller = info["controller"] as? MemoDetailViewController
         else { return }
+        self.MemoSideViewControllerDelegate = controller
         controller.textView.string = self.memos[row].content
     }
     
@@ -108,5 +121,37 @@ class MemoSideViewController: NSViewController, NSTableViewDataSource, NSTableVi
         Storage.saveMemo(memo: memo)
         
     }
+    
+    // MARK: - Toolbar Actions
+    
+    @IBAction func createMemo(_ sender: Any) {
+        self.commonCreateMemo()
+    }
+    
+    @IBAction func pinMemo(_ sender: Any) {
+        self.commonPinMemo()
+    }
+    
+    @objc func commonCreateMemo() {
+        guard let delegate = self.MemoSideViewControllerDelegate else { return }
+        if self.memos.count > 0 {
+            if self.memos[0].content.count == 0 {
+                return
+            } else {
+                self.memos[0].update(content: delegate.currentMemoContent())
+                Storage.saveMemo(memo: self.memos[0])
+            }
+        }
+        let memo = Memo()
+        self.memos.insert(memo, at: 0)
+        self.tableView.reloadData()
+    }
+    
+    @objc func commonPinMemo() {
         
+    }
+}
+
+protocol MemoSideViewControllerDelegate: class {
+    func currentMemoContent() -> String
 }

@@ -20,7 +20,7 @@ class MemoDetailTextView: NSTextView {
         let code = event.keyCode
         let flags = event.modifierFlags
         if (code == kVK_Escape) || (flags.contains(.command) && code == kVK_ANSI_S) {
-            guard !self.hasMarkedText() else {
+            guard !self.hasMarkedText() && self.string.count > 0 else {
                 super.keyDown(with: event)
                 return
             }

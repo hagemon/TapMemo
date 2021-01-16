@@ -26,5 +26,8 @@ extension Notification.Name {
     static let detailViewShouldUpdate = Notification.Name(rawValue: "detailViewShouldUpdate")
     static let detailViewDidLaunch = Notification.Name(rawValue: "detailViewDidLaunch")
     static let detailViewDidSave = Notification.Name(rawValue: "detailViewDidSave")
+    static let detailViewDidCreateMemo = Notification.Name(rawValue: "detailViewDidCreateMemo")
+    static let detailViewDidPinMemo = Notification.Name(rawValue: "detailViewDidPinMemo")
+    static let detailViewTextDidChange = Notification.Name(rawValue: "detailViewTextDidChange")
     static let didSaveMemo = Notification.Name(rawValue: "didSaveMemo")
 }

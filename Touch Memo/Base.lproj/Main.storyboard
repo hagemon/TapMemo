@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17701"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Search Toolbar Item" minToolsVersion="12.0" minSystemVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -869,7 +870,7 @@
         <!--Window Controller-->
         <scene sceneID="yxR-8s-CDM">
             <objects>
-                <windowController storyboardIdentifier="Memos" id="jYc-Yu-7bI" sceneMemberID="viewController">
+                <windowController storyboardIdentifier="Memos" id="jYc-Yu-7bI" customClass="MemoSplitWindowController" customModule="Touch_Memo" customModuleProvider="target" sceneMemberID="viewController">
                     <window key="window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="BAD-e4-fJb">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
@@ -881,13 +882,21 @@
                         </view>
                         <toolbar key="toolbar" implicitIdentifier="49329734-A5DC-47EC-AAB4-D178623B40AD" autosavesConfiguration="NO" displayMode="iconOnly" sizeMode="regular" id="aoV-R1-Hzj">
                             <allowedToolbarItems>
-                                <toolbarItem implicitItemIdentifier="1C53CB3C-C20D-49D8-A4F4-96BA9E05F777" label="Add" paletteLabel="Toolbar Item" tag="-1" image="NSAddTemplate" id="GmM-pW-vSu">
+                                <toolbarItem implicitItemIdentifier="1C53CB3C-C20D-49D8-A4F4-96BA9E05F777" label="Add" paletteLabel="Add" tag="-1" navigational="YES" id="GmM-pW-vSu">
+                                    <imageReference key="image" image="plus" catalog="system" symbolScale="small"/>
                                     <size key="minSize" width="33.5" height="26"/>
                                     <size key="maxSize" width="33.5" height="26"/>
+                                    <connections>
+                                        <action selector="createMemo:" target="0gh-VZ-DRy" id="eXQ-e6-sfJ"/>
+                                    </connections>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="8221EEAD-9A60-4704-AEA6-5B8B5A872611" label="Toolbar Item" paletteLabel="Toolbar Item" tag="-1" image="pin" catalog="system" id="24N-CL-1Ru">
+                                <toolbarItem implicitItemIdentifier="8221EEAD-9A60-4704-AEA6-5B8B5A872611" label="Pin" paletteLabel="Pin" tag="-1" navigational="YES" id="24N-CL-1Ru">
+                                    <imageReference key="image" image="pin" catalog="system" symbolScale="small"/>
                                     <size key="minSize" width="37" height="30"/>
                                     <size key="maxSize" width="37" height="30"/>
+                                    <connections>
+                                        <action selector="pinMemo:" target="0gh-VZ-DRy" id="Wy5-Hj-nix"/>
+                                    </connections>
                                 </toolbarItem>
                                 <searchToolbarItem implicitItemIdentifier="F54AE046-BC93-4A90-B101-14232F661A89" label="Search" paletteLabel="Search" visibilityPriority="1001" id="pNi-kS-MeV">
                                     <nil key="toolTip"/>
@@ -903,11 +912,22 @@
                                 </searchToolbarItem>
                                 <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="Sog-1W-kqw"/>
                                 <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="FNc-Oq-ssH"/>
+                                <toolbarItem implicitItemIdentifier="9B70AADE-F94A-419A-AD8D-CAF55457586F" label="Add2" paletteLabel="Add2" image="plus" catalog="system" sizingBehavior="auto" navigational="YES" id="qg4-rh-9kK">
+                                    <nil key="toolTip"/>
+                                    <button key="view" verticalHuggingPriority="750" id="o4K-l4-bo7">
+                                        <rect key="frame" x="0.0" y="14" width="40.5" height="32"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="bevel" title="Button" bezelStyle="rounded" image="plus" catalog="system" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="C93-cX-LKo">
+                                            <behavior key="behavior" lightByContents="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                    </button>
+                                </toolbarItem>
                             </allowedToolbarItems>
                             <defaultToolbarItems>
-                                <toolbarItem reference="FNc-Oq-ssH"/>
                                 <toolbarItem reference="GmM-pW-vSu"/>
                                 <toolbarItem reference="24N-CL-1Ru"/>
+                                <toolbarItem reference="FNc-Oq-ssH"/>
                                 <searchToolbarItem reference="pNi-kS-MeV"/>
                             </defaultToolbarItems>
                         </toolbar>
@@ -925,7 +945,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="NSAddTemplate" width="14" height="13"/>
-        <image name="pin" catalog="system" width="15" height="17"/>
+        <image name="pin" catalog="system" width="13" height="14"/>
+        <image name="plus" catalog="system" width="12" height="11"/>
     </resources>
 </document>
