@@ -10,6 +10,7 @@
 		3A5F2BCC25B17F5F00359B76 /* MemoDetailTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5F2BCB25B17F5F00359B76 /* MemoDetailTextView.swift */; };
 		3A5F2BCF25B18D1600359B76 /* MemoSplitWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5F2BCE25B18D1600359B76 /* MemoSplitWindowController.swift */; };
 		3A5F2BD525B2643300359B76 /* MemoListManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5F2BD425B2643300359B76 /* MemoListManager.swift */; };
+		3A5F2BE425B2D2F600359B76 /* Renderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5F2BE325B2D2F600359B76 /* Renderer.swift */; };
 		3A6F0D7525AC88560089BC2F /* KeyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6F0D7425AC88560089BC2F /* KeyManager.swift */; };
 		3A6F0D7825AC88D00089BC2F /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6F0D7725AC88D00089BC2F /* Storage.swift */; };
 		3A6F0D7D25AC8DCC0089BC2F /* PreferencesWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6F0D7C25AC8DCC0089BC2F /* PreferencesWindow.swift */; };
@@ -36,6 +37,7 @@
 		3A5F2BCB25B17F5F00359B76 /* MemoDetailTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoDetailTextView.swift; sourceTree = "<group>"; };
 		3A5F2BCE25B18D1600359B76 /* MemoSplitWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoSplitWindowController.swift; sourceTree = "<group>"; };
 		3A5F2BD425B2643300359B76 /* MemoListManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoListManager.swift; sourceTree = "<group>"; };
+		3A5F2BE325B2D2F600359B76 /* Renderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Renderer.swift; sourceTree = "<group>"; };
 		3A6F0D7425AC88560089BC2F /* KeyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyManager.swift; sourceTree = "<group>"; };
 		3A6F0D7725AC88D00089BC2F /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		3A6F0D7C25AC8DCC0089BC2F /* PreferencesWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesWindow.swift; sourceTree = "<group>"; };
@@ -134,6 +136,7 @@
 				3AE1F3A425A9722200A38694 /* Extentions.swift */,
 				3AE1F3A825A9722D00A38694 /* Enums.swift */,
 				3AE1F3E925A9A9A600A38694 /* Protocols.swift */,
+				3A5F2BE325B2D2F600359B76 /* Renderer.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -259,6 +262,7 @@
 				3AE1F3BB25A97EB200A38694 /* MemoTextView.swift in Sources */,
 				3AAA905125AEC0D600323743 /* MemoDetailViewController.swift in Sources */,
 				3A6F0D9325ADD33E0089BC2F /* MemoSplitViewController.swift in Sources */,
+				3A5F2BE425B2D2F600359B76 /* Renderer.swift in Sources */,
 				3AE1F3EA25A9A9A600A38694 /* Protocols.swift in Sources */,
 				3AE1F3A925A9722D00A38694 /* Enums.swift in Sources */,
 				3AE1F3B825A97EA200A38694 /* MemoScrollView.swift in Sources */,
@@ -410,6 +414,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MARKETING_VERSION = 0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "w2fzu.hagemon.Touch-Memo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -432,6 +437,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MARKETING_VERSION = 0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "w2fzu.hagemon.Touch-Memo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

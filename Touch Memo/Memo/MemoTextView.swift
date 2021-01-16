@@ -8,7 +8,7 @@
 import Cocoa
 import Carbon
 
-class MemoTextView: NSTextView {
+class MemoTextView: NSTextView, NSTextViewDelegate {
     
     var memo: Memo?
     
@@ -29,9 +29,10 @@ class MemoTextView: NSTextView {
     
     init(frame frameRect:NSRect, memo:Memo) {
         super.init(frame: frameRect)
-        self.font = .systemFont(ofSize: 15)
+        self.font = .systemFont(ofSize: FONT_LEVELS[0])
         self.memo = memo
         self.string = memo.content
+        self.delegate = self
     }
     
 //    override init(frame frameRect: NSRect) {
@@ -85,10 +86,19 @@ class MemoTextView: NSTextView {
             guard let memo = self.memo else { return }
             memo.changed = true
             super.keyDown(with: event)
+            if code == kVK_Return {
+                guard let storage = self.textStorage else { return }
+                storage.setAttributedString(Renderer.render(content: self.string))
+            }
         }
     }
     
     override func acceptsFirstMouse(for event: NSEvent?) -> Bool {
         return true
+    }
+    
+    func textDidChange(_ notification: Notification) {
+//        let renderer = Renderer(content: self.string)
+//        print(renderer.getTitle())
     }
 }

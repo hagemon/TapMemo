@@ -20,13 +20,23 @@ class MemoDetailTextView: NSTextView {
         let code = event.keyCode
         let flags = event.modifierFlags
         if (code == kVK_Escape) || (flags.contains(.command) && code == kVK_ANSI_S) {
-            guard !self.hasMarkedText() && self.string.count > 0 else {
+            guard !self.hasMarkedText() else {
                 super.keyDown(with: event)
                 return
             }
             MemoListManager.shared.saveSelectedMemo()
         }
-        super.keyDown(with: event)
+        else if code == kVK_Return {
+            guard let storage = self.textStorage else {
+                super.keyDown(with: event)
+                return
+            }
+            super.keyDown(with: event)
+            storage.setAttributedString(Renderer.render(content: self.string))
+        }
+        else {
+            super.keyDown(with: event)
+        }
     }
     
     override var isEditable: Bool {

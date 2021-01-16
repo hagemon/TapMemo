@@ -842,12 +842,13 @@
                                         </textView>
                                     </subviews>
                                 </clipView>
+                                <edgeInsets key="scrollerInsets" left="5" right="5" top="5" bottom="5"/>
                                 <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="gfo-bU-C2m">
                                     <rect key="frame" x="-100" y="-100" width="240" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="Fdm-3Q-YaL">
-                                    <rect key="frame" x="254" y="0.0" width="16" height="300"/>
+                                    <rect key="frame" x="249" y="5" width="16" height="290"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
@@ -916,7 +917,7 @@
                                     <nil key="toolTip"/>
                                     <button key="view" verticalHuggingPriority="750" id="o4K-l4-bo7">
                                         <rect key="frame" x="0.0" y="14" width="40.5" height="32"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <autoresizingMask key="autoresizingMask"/>
                                         <buttonCell key="cell" type="bevel" title="Button" bezelStyle="rounded" image="plus" catalog="system" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="C93-cX-LKo">
                                             <behavior key="behavior" lightByContents="YES"/>
                                             <font key="font" metaFont="system"/>
@@ -946,6 +947,6 @@
     </scenes>
     <resources>
         <image name="pin" catalog="system" width="13" height="14"/>
-        <image name="plus" catalog="system" width="12" height="11"/>
+        <image name="plus" catalog="system" width="14" height="13"/>
     </resources>
 </document>

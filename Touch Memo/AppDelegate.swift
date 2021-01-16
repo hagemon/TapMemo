@@ -28,7 +28,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         menu.addItem(.separator())
         menu.addItem(withTitle: "Quit", action: #selector(self.exit), keyEquivalent: "q")
         // Storage.removeAllMemos()
-//        self.openMemos()
+        self.openMemos()
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {

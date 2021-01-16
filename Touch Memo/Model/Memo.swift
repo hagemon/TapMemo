@@ -12,7 +12,7 @@ class Memo: NSObject, NSCoding {
     var date: String
     var content: String
     private let uuid: String
-    var changed = false
+    var changed = false 
     
     init(title: String, date: Date, content: String) {
         self.title = title
@@ -55,6 +55,7 @@ class Memo: NSObject, NSCoding {
     
     func update(content: String){
         self.content = content
+        self.title = Renderer.getTitle(content: content)
         self.date = Date(timeIntervalSinceNow: 0).toString()
     }
     

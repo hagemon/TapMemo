@@ -49,5 +49,9 @@ class MemoWindowController: NSWindowController, NSWindowDelegate {
             at:MemoManager.shared.controllers.firstIndex(of: self)!
         )
     }
+    
+    func textDidChange(_ notification: Notification) {
+        
+    }
 
 }

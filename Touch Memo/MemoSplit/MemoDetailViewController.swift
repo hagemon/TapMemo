@@ -13,6 +13,7 @@ class MemoDetailViewController: NSViewController, NSTextViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.textView.font = NSFont.systemFont(ofSize: FONT_LEVELS[0])
         self.updateContent()
         NotificationCenter.default.addObserver(self, selector: #selector(self.updateContent), name: .detailViewShouldUpdate, object: nil)
     }
@@ -22,7 +23,9 @@ class MemoDetailViewController: NSViewController, NSTextViewDelegate {
             self.textView.string = ""
             return
         }
-        self.textView.string = memo.content
+//        self.textView.string = memo.content
+        guard let storage = self.textView.textStorage else { return }
+        storage.setAttributedString(Renderer.render(content: memo.content))
     }
     
     func textDidChange(_ notification: Notification) {
