@@ -57,7 +57,8 @@ class MemoSideViewController: NSViewController, NSTableViewDataSource, NSTableVi
         guard edge == .trailing else {return []}
         let action = NSTableViewRowAction(style: .destructive, title: "Delete", handler: {
             _, row in
-            MemoListManager.shared.removeSelectedMemo()
+//            MemoListManager.shared.removeSelectedMemo()
+            MemoListManager.shared.removeMemo(at: row)
             self.updateDetailContent()
             self.tableView.removeRows(at: IndexSet(integer: row), withAnimation: .effectFade)
             if !MemoListManager.shared.isEmpty {

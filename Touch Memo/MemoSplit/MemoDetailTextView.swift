@@ -31,6 +31,7 @@ class MemoDetailTextView: NSTextView {
                 super.keyDown(with: event)
                 return
             }
+            super.keyDown(with: event)
             storage.setAttributedString(Renderer.render(content: self.string))
         }
         else {

@@ -77,4 +77,12 @@ class MemoListManager: NSObject {
         self.memos.remove(at: self.index)
         self.index = 0
     }
+    
+    func removeMemo(at index:Int) {
+        guard index < self.memos.count else {return}
+        let memo = self.memos[index]
+        Storage.removeMemo(memo: memo)
+        self.memos.remove(at: index)
+        self.index = 0
+    }
 }

@@ -8,7 +8,7 @@
 import Cocoa
 
 class RE: NSObject {
-    static func RegularExpression(validateString:String, inRegex regex:String) -> [String]{
+    static func regularExpression(validateString:String, inRegex regex:String) -> [String]{
         do {
             let re: NSRegularExpression = try NSRegularExpression(pattern: regex, options: [])
             let matches = re.matches(in: validateString, options:[], range: NSRange(location: 0, length: validateString.count))

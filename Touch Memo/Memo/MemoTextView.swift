@@ -88,7 +88,6 @@ class MemoTextView: NSTextView, NSTextViewDelegate {
             if code == kVK_Return {
                 guard let storage = self.textStorage else { return }
                 storage.setAttributedString(Renderer.render(content: self.string))
-                return
             }
             super.keyDown(with: event)
         }
