@@ -27,12 +27,13 @@ class MemoDetailTextView: NSTextView {
             MemoListManager.shared.saveSelectedMemo()
         }
         else if code == kVK_Return {
-            guard let storage = self.textStorage else {
+            guard let textStorage = self.textStorage else {
                 super.keyDown(with: event)
                 return
             }
             super.keyDown(with: event)
-            storage.setAttributedString(Renderer.render(content: self.string))
+            textStorage.setAttributedString(Renderer.render(content: self.string))
+            MemoListManager.shared.saveSelectedMemo()
         }
         else {
             super.keyDown(with: event)

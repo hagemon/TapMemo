@@ -32,7 +32,8 @@ class MemoTextView: NSTextView, NSTextViewDelegate {
         self.font = .systemFont(ofSize: FONT_LEVELS[0])
         self.memo = memo
         self.string = memo.content
-        self.delegate = self
+        guard let storage = self.textStorage else { return }
+        storage.setAttributedString(Renderer.render(content: self.string))
     }
     
 //    override init(frame frameRect: NSRect) {
@@ -55,6 +56,11 @@ class MemoTextView: NSTextView, NSTextViewDelegate {
     
     func deactivate() {
         self.isActive = false
+        self.save()
+        self.setSelectedRange(NSRange(location: self.string.count, length: 0))
+    }
+    
+    func save() {
         guard let memo = self.memo,
               self.string.count > 0
         else { return }
@@ -63,7 +69,6 @@ class MemoTextView: NSTextView, NSTextViewDelegate {
             Storage.saveMemo(memo: memo)
             memo.changed = false
         }
-        self.setSelectedRange(NSRange(location: self.string.count, length: 0))
     }
     
     override func mouseDown(with event: NSEvent) {
@@ -82,13 +87,14 @@ class MemoTextView: NSTextView, NSTextViewDelegate {
         let flags = event.modifierFlags
         if !self.hasMarkedText() && (code == kVK_Escape || (flags.contains(.command) && code == kVK_ANSI_S)) {
             self.deactivate()
-        }else{
+        }else if code == kVK_Return {
+            guard let storage = self.textStorage else { return }
+            super.keyDown(with: event)
+            storage.setAttributedString(Renderer.render(content: self.string))
+            self.save()
+        } else {
             guard let memo = self.memo else { return }
             memo.changed = true
-            if code == kVK_Return {
-                guard let storage = self.textStorage else { return }
-                storage.setAttributedString(Renderer.render(content: self.string))
-            }
             super.keyDown(with: event)
         }
     }
@@ -97,8 +103,4 @@ class MemoTextView: NSTextView, NSTextViewDelegate {
         return true
     }
     
-    func textDidChange(_ notification: Notification) {
-//        let renderer = Renderer(content: self.string)
-//        print(renderer.getTitle())
-    }
 }
