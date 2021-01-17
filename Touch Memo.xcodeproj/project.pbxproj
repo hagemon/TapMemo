@@ -31,6 +31,7 @@
 		3AE1F3E525A98F2F00A38694 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3AE1F3D125A98D3300A38694 /* Assets.xcassets */; };
 		3AE1F3E725A98F3300A38694 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3AE1F3D225A98D3300A38694 /* Main.storyboard */; };
 		3AE1F3EA25A9A9A600A38694 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE1F3E925A9A9A600A38694 /* Protocols.swift */; };
+		3AFB71D325B3E5CA00DE1267 /* RE.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AFB71D225B3E5CA00DE1267 /* RE.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +61,7 @@
 		3AE1F3D525A98D3300A38694 /* Touch_Memo.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = Touch_Memo.entitlements; sourceTree = "<group>"; };
 		3AE1F3D625A98D3300A38694 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3AE1F3E925A9A9A600A38694 /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
+		3AFB71D225B3E5CA00DE1267 /* RE.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RE.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +139,7 @@
 				3AE1F3A825A9722D00A38694 /* Enums.swift */,
 				3AE1F3E925A9A9A600A38694 /* Protocols.swift */,
 				3A5F2BE325B2D2F600359B76 /* Renderer.swift */,
+				3AFB71D225B3E5CA00DE1267 /* RE.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -251,6 +254,7 @@
 				3AE1F3A525A9722200A38694 /* Extentions.swift in Sources */,
 				3AE1F3B225A9727600A38694 /* MemoWindow.swift in Sources */,
 				3AE1F3AF25A9726700A38694 /* MemoWindowController.swift in Sources */,
+				3AFB71D325B3E5CA00DE1267 /* RE.swift in Sources */,
 				3AAA905525AF3C3300323743 /* Memo.swift in Sources */,
 				3AAA904E25AEC0BF00323743 /* MemoSideViewController.swift in Sources */,
 				3A6F0D7525AC88560089BC2F /* KeyManager.swift in Sources */,

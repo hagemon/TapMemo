@@ -9,23 +9,7 @@ import Cocoa
 
 class Renderer: NSObject {
     static func getTitle(content: String) -> String {
-        guard let index = content.firstIndex(of: "\n") else {
-            let content = content.trimmingCharacters(in: .whitespaces)
-            if content.count == 0 {
-                return "No Title"
-            } else {
-                return self.clearTitle(title: Substring(content))
-            }
-        }
-        return self.clearTitle(title: content[..<index])
-    }
-    
-    static func clearTitle(title: Substring) -> String {
-        var title = title
-        while title.starts(with: "#") || title.starts(with: " ") {
-            title = title.dropFirst()
-        }
-        return String(title)
+        return RE.replace(validateString: content, withContent: "", inRegex: "^#{1,3}")
     }
     
     static func render(content: String) -> NSMutableAttributedString {
@@ -33,16 +17,8 @@ class Renderer: NSObject {
         let rendered = NSMutableAttributedString(string: "")
         for line in lines {
             // Render headers
-            var level = 0
-            for c in line {
-                if c == "#" {
-                    level += 1
-                }
-                else {
-                    break
-                }
-            }
-            if level > 3 { level = 3}
+            let headerMatch = RE.RegularExpression(validateString: String(line), inRegex: "^#{1,3}")
+            let level = headerMatch.isEmpty ? 0 : headerMatch[0].count
             let paraStyle = NSMutableParagraphStyle()
             paraStyle.lineHeightMultiple = PARAGRAGH_LEVELS[level]
             let font = level > 0 ? NSFont.boldSystemFont(ofSize: FONT_LEVELS[level]) : NSFont.systemFont(ofSize: FONT_LEVELS[level])
