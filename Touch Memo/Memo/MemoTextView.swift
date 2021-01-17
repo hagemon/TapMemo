@@ -85,11 +85,12 @@ class MemoTextView: NSTextView, NSTextViewDelegate {
         }else{
             guard let memo = self.memo else { return }
             memo.changed = true
-            super.keyDown(with: event)
             if code == kVK_Return {
                 guard let storage = self.textStorage else { return }
                 storage.setAttributedString(Renderer.render(content: self.string))
+                return
             }
+            super.keyDown(with: event)
         }
     }
     

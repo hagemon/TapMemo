@@ -9,11 +9,11 @@ import Cocoa
 
 class Renderer: NSObject {
     static func getTitle(content: String) -> String {
-        return RE.replace(validateString: content, withContent: "", inRegex: "^#{1,3}")
+        return RE.replace(validateString: content, withContent: "", inRegex: "^#{1,3} +")
     }
     
     static func render(content: String) -> NSMutableAttributedString {
-        let lines = content.split(separator: "\n")
+        let lines = content.split(separator: "\n", omittingEmptySubsequences: false)
         let rendered = NSMutableAttributedString(string: "")
         for line in lines {
             // Render headers
