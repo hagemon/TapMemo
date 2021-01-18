@@ -10,7 +10,11 @@ import Carbon
 
 class MemoTextView: NSTextView {
     
-    var memo: Memo?
+    var memo: Memo? {
+        didSet {
+            self.refresh()
+        }
+    }
     
     var isActive = true {
         didSet {
@@ -25,21 +29,12 @@ class MemoTextView: NSTextView {
         // Drawing code here.
     }
     
-    init(frame frameRect:NSRect, memo:Memo) {
-        super.init(frame: frameRect)
-        self.font = .systemFont(ofSize: FONT_LEVELS[0])
-        self.memo = memo
+    func refresh() {
+        guard let storage = self.textStorage,
+              let memo = self.memo
+        else {return}
         self.string = memo.content
-        guard let storage = self.textStorage else { return }
         storage.setAttributedString(MDParser.renderAll(storage: storage))
-    }
-    
-    override init(frame frameRect: NSRect, textContainer container: NSTextContainer?) {
-        super.init(frame: frameRect, textContainer: container)
-    }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
         
     func activate() {

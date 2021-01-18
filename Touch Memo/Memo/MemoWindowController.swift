@@ -9,39 +9,15 @@ import Cocoa
 
 class MemoWindowController: NSWindowController, NSWindowDelegate {
     
-    var memoWindow: MemoWindow?
-    var memoScrollView: MemoScrollView?
-    var memoTextView: MemoTextView?
+    @IBOutlet weak var pinButton: NSToolbarItem!
     var isMoved = false
     
-    init(window: MemoWindow) {
-        super.init(window: window)
-        self.memoWindow = window
-        window.delegate = self
-        self.memoScrollView = window.memoScrollView
-        self.memoTextView = window.memoTextView
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+
     
     override func windowDidLoad() {
         super.windowDidLoad()
     
         // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
-    }
-    
-    func windowDidResize(_ notification: Notification) {
-        guard let textView = self.memoTextView,
-              let scrollView = self.memoScrollView,
-              let window = self.memoWindow
-        else {
-            print("Could not get views when window resize")
-            return
-        }
-        textView.setFrameSize(scrollView.contentSize)
-        window.resetToolRect()
     }
     
     func windowWillClose(_ notification: Notification) {
@@ -50,8 +26,17 @@ class MemoWindowController: NSWindowController, NSWindowDelegate {
         )
     }
     
-    func textDidChange(_ notification: Notification) {
-        
+    @IBAction func pin(_ sender:Any) {
+        guard let button = self.pinButton,
+              let window = self.window
+        else { return }
+        if window.level == .statusBar {
+            window.level = .normal
+            button.image = NSImage(systemSymbolName: "pin.slash", accessibilityDescription: nil)
+        } else {
+            window.level = .statusBar
+            button.image = NSImage(systemSymbolName: "pin", accessibilityDescription: nil)
+        }
     }
 
 }

@@ -46,7 +46,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     @objc func openMemos() {
-        let storyboard = NSStoryboard.main!
+        guard let storyboard = NSStoryboard.main else {return}
         let windowController = storyboard.instantiateController(withIdentifier: "Memos") as! NSWindowController
         NSApplication.shared.activate(ignoringOtherApps: true)
         windowController.showWindow(nil)
