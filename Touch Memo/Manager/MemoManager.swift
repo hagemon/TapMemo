@@ -18,15 +18,18 @@ class MemoManager: NSObject {
             print("Could not get default rect in MemoManager.createMemo")
             return
         }
-        NSApplication.shared.activate(ignoringOtherApps: true)
-            
-        let originRect = NSRect(origin: .zero, size: rect.size)
-        let view = MemoTextView(frame: originRect, memo: memo)
-        let scrollView = MemoScrollView(frame: originRect, textView: view)
-        let window = MemoWindow(contentRect: rect, contentView: scrollView)
-        let controller = MemoWindowController(window: window)
-        
+        guard let storyboard = NSStoryboard.main,
+              let controller = storyboard.instantiateController(withIdentifier: "Memo") as? MemoWindowController,
+              let window = controller.window,
+              let viewController = controller.contentViewController as? MemoViewController,
+              let textView = viewController.textView
+        else {
+            return
+        }
+        textView.memo = memo
+        window.setFrameOrigin(rect.origin)
         self.controllers.append(controller)
+        NSApplication.shared.activate(ignoringOtherApps: true)
         controller.showWindow(nil)
     }
     
@@ -46,7 +49,7 @@ class MemoManager: NSObject {
             height: height
         )
     }
-    
+
     private func currentOffset() -> CGFloat {
         var count = 0
         for controller in self.controllers {

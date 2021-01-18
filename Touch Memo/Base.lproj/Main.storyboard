@@ -680,7 +680,7 @@
                 <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-17" y="-46"/>
+            <point key="canvasLocation" x="-11" y="-232"/>
         </scene>
         <!--Memo Split View Controller-->
         <scene sceneID="vMg-V9-Kec">
@@ -705,7 +705,7 @@
                 </splitViewController>
                 <customObject id="cVk-7v-7ij" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="229" y="255"/>
+            <point key="canvasLocation" x="245" y="30"/>
         </scene>
         <!--Memo Side View Controller-->
         <scene sceneID="ys7-Iz-BDw">
@@ -812,7 +812,7 @@
                 </viewController>
                 <customObject id="0Xm-aG-yGu" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="764" y="69"/>
+            <point key="canvasLocation" x="721" y="30"/>
         </scene>
         <!--Memo Detail View Controller-->
         <scene sceneID="DoH-wv-aPt">
@@ -866,7 +866,7 @@
                 </viewController>
                 <customObject id="7K5-JE-wCS" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="809" y="441"/>
+            <point key="canvasLocation" x="1021" y="30"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="yxR-8s-CDM">
@@ -942,11 +942,106 @@
                 </windowController>
                 <customObject id="0gh-VZ-DRy" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-307" y="266"/>
+            <point key="canvasLocation" x="-306" y="52"/>
+        </scene>
+        <!--Window Controller-->
+        <scene sceneID="BnN-Ue-scc">
+            <objects>
+                <windowController storyboardIdentifier="Memo" id="S91-Xr-z6C" customClass="MemoWindowController" customModule="Touch_Memo" customModuleProvider="target" sceneMemberID="viewController">
+                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" titleVisibility="hidden" id="0V0-op-aFX" customClass="MemoWindow" customModule="Touch_Memo" customModuleProvider="target">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+                        <rect key="contentRect" x="933" y="515" width="320" height="240"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="1280" height="800"/>
+                        <view key="contentView" id="8wS-ug-Xh3">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="240"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                        </view>
+                        <toolbar key="toolbar" implicitIdentifier="FF9F74FB-E9E1-4DEA-8DDF-25F085FAB0BF" autosavesConfiguration="NO" displayMode="iconOnly" sizeMode="regular" id="PNy-Fo-FK2">
+                            <allowedToolbarItems>
+                                <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="iXi-m9-mex"/>
+                                <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="b4B-qr-XiU"/>
+                                <toolbarItem implicitItemIdentifier="B066CBB8-04AF-4C87-8EC8-EB7CC2C8AFDF" label="Pin" paletteLabel="Pin" tag="-1" id="9nM-iL-DLK">
+                                    <imageReference key="image" image="pin" catalog="system" symbolScale="small"/>
+                                    <size key="minSize" width="37" height="30"/>
+                                    <size key="maxSize" width="37" height="30"/>
+                                    <connections>
+                                        <action selector="pin:" target="p5C-m3-Mqp" id="LSZ-vw-QeZ"/>
+                                    </connections>
+                                </toolbarItem>
+                            </allowedToolbarItems>
+                            <defaultToolbarItems>
+                                <toolbarItem reference="b4B-qr-XiU"/>
+                                <toolbarItem reference="9nM-iL-DLK"/>
+                            </defaultToolbarItems>
+                        </toolbar>
+                        <connections>
+                            <outlet property="delegate" destination="S91-Xr-z6C" id="ndh-k9-vtF"/>
+                        </connections>
+                    </window>
+                    <connections>
+                        <outlet property="pinButton" destination="9nM-iL-DLK" id="4XY-BR-OqM"/>
+                        <segue destination="HtA-p5-Hh2" kind="relationship" relationship="window.shadowedContentViewController" id="peg-um-Dor"/>
+                    </connections>
+                </windowController>
+                <customObject id="p5C-m3-Mqp" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-312" y="453"/>
+        </scene>
+        <!--Memo View Controller-->
+        <scene sceneID="EFx-Ap-BZm">
+            <objects>
+                <viewController id="HtA-p5-Hh2" customClass="MemoViewController" customModule="Touch_Memo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="VOd-pT-KiW">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="240"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" horizontalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="lYK-Zs-W7h" customClass="MemoScrollView" customModule="Touch_Memo" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="240"/>
+                                <clipView key="contentView" drawsBackground="NO" id="i27-An-fN2">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="240"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <textView importsGraphics="NO" richText="NO" verticallyResizable="YES" smartInsertDelete="YES" id="EPm-1d-Tjj" customClass="MemoTextView" customModule="Touch_Memo" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="240"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            <size key="minSize" width="320" height="240"/>
+                                            <size key="maxSize" width="480" height="10000000"/>
+                                            <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                        </textView>
+                                    </subviews>
+                                </clipView>
+                                <edgeInsets key="scrollerInsets" left="5" right="5" top="5" bottom="5"/>
+                                <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="sFw-2i-9Tn">
+                                    <rect key="frame" x="-100" y="-100" width="240" height="16"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                                <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="GJS-xK-5rS">
+                                    <rect key="frame" x="299" y="5" width="16" height="230"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                            </scrollView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="lYK-Zs-W7h" firstAttribute="leading" secondItem="VOd-pT-KiW" secondAttribute="leading" id="14p-Qu-aIR"/>
+                            <constraint firstAttribute="bottom" secondItem="lYK-Zs-W7h" secondAttribute="bottom" id="AAb-ba-CUh"/>
+                            <constraint firstAttribute="trailing" secondItem="lYK-Zs-W7h" secondAttribute="trailing" id="N5W-YC-2fz"/>
+                            <constraint firstItem="lYK-Zs-W7h" firstAttribute="top" secondItem="VOd-pT-KiW" secondAttribute="top" id="nFD-Um-Eej"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="textView" destination="EPm-1d-Tjj" id="w8q-xc-S2q"/>
+                    </connections>
+                </viewController>
+                <customObject id="gWR-b3-Me1" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="260" y="443"/>
         </scene>
     </scenes>
     <resources>
         <image name="pin" catalog="system" width="13" height="14"/>
-        <image name="plus" catalog="system" width="14" height="13"/>
+        <image name="plus" catalog="system" width="12" height="11"/>
     </resources>
 </document>
