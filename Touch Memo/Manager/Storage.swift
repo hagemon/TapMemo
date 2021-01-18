@@ -38,7 +38,6 @@ class Storage: NSObject {
         do {
             let data = try NSKeyedArchiver.archivedData(withRootObject: memo, requiringSecureCoding: false)
             UserDefaults.standard.setValue(data, forKey: key)
-            NotificationCenter.default.post(name: .memoDidStore, object: nil, userInfo: ["memo": memo])
         }
         catch {
             print(error)

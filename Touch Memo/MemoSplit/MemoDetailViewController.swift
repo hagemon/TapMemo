@@ -23,13 +23,10 @@ class MemoDetailViewController: NSViewController, NSTextViewDelegate {
             self.textView.string = ""
             return
         }
-//        self.textView.string = memo.content
-        guard let storage = self.textView.textStorage else { return }
-        storage.setAttributedString(Renderer.render(content: memo.content))
-    }
-    
-    func textDidChange(_ notification: Notification) {
-        MemoListManager.shared.updateSelectedMemo(content: self.textView.string)
+        self.textView.string = memo.content
+        guard let textStorage = self.textView.textStorage
+        else { return }
+        textStorage.setAttributedString(MDParser.renderAll(storage: textStorage))
     }
     
     @IBAction func createMemo(_ sender:Any) {

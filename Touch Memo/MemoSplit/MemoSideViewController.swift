@@ -14,7 +14,8 @@ class MemoSideViewController: NSViewController, NSTableViewDataSource, NSTableVi
         super.viewDidLoad()
         // Do view setup here.
         self.selectFirstCell()
-        NotificationCenter.default.addObserver(self, selector: #selector(self.syncStoredMemo(_:)), name: .memoDidStore, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.syncStoredMemo(_:)), name: .memoListShouldSync, object: nil)
+        // common notification for tool bar item
         NotificationCenter.default.addObserver(self, selector: #selector(self.commonCreateMemo), name: .detailViewDidCreateMemo, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.commonPinMemo), name: .detailViewDidPinMemo, object: nil)
     }
@@ -57,19 +58,18 @@ class MemoSideViewController: NSViewController, NSTableViewDataSource, NSTableVi
         guard edge == .trailing else {return []}
         let action = NSTableViewRowAction(style: .destructive, title: "Delete", handler: {
             _, row in
-//            MemoListManager.shared.removeSelectedMemo()
             MemoListManager.shared.removeMemo(at: row)
-            self.updateDetailContent()
             self.tableView.removeRows(at: IndexSet(integer: row), withAnimation: .effectFade)
-            if !MemoListManager.shared.isEmpty {
-                self.selectFirstCell()
-            }
+            self.selectFirstCell()
         })
         action.backgroundColor = .red
         return [action]
     }
     
     func selectFirstCell() {
+        self.updateDetailContent()
+        guard !MemoListManager.shared.isEmpty else {return}
+        MemoListManager.shared.index = 0
         self.tableView.selectRowIndexes(IndexSet(integer: 0), byExtendingSelection: false)
     }
     

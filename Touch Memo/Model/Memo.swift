@@ -55,7 +55,7 @@ class Memo: NSObject, NSCoding {
     
     func update(content: String){
         self.content = content
-        self.title = Renderer.getTitle(content: content)
+        self.title = MDParser.getTitle(content: content)
         self.date = Date(timeIntervalSinceNow: 0).toString()
     }
     

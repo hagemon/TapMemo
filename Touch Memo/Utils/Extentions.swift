@@ -30,4 +30,5 @@ extension Notification.Name {
     static let detailViewDidPinMemo = Notification.Name(rawValue: "detailViewDidPinMemo")
     static let detailViewTextDidChange = Notification.Name(rawValue: "detailViewTextDidChange")
     static let memoDidStore = Notification.Name(rawValue: "memoDidStore")
+    static let memoListShouldSync = Notification.Name(rawValue: "memoListShouldSync")
 }

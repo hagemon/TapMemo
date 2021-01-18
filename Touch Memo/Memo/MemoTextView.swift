@@ -8,7 +8,7 @@
 import Cocoa
 import Carbon
 
-class MemoTextView: NSTextView, NSTextViewDelegate {
+class MemoTextView: NSTextView {
     
     var memo: Memo?
     
@@ -18,9 +18,7 @@ class MemoTextView: NSTextView, NSTextViewDelegate {
             self.isSelectable = self.isActive
         }
     }
-    
-    var lastPoint: NSPoint?
-        
+            
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
 
@@ -33,14 +31,8 @@ class MemoTextView: NSTextView, NSTextViewDelegate {
         self.memo = memo
         self.string = memo.content
         guard let storage = self.textStorage else { return }
-        storage.setAttributedString(Renderer.render(content: self.string))
+        storage.setAttributedString(MDParser.renderAll(storage: storage))
     }
-    
-//    override init(frame frameRect: NSRect) {
-//        super.init(frame: frameRect)
-//        self.font = .systemFont(ofSize: 15)
-//
-//    }
     
     override init(frame frameRect: NSRect, textContainer container: NSTextContainer?) {
         super.init(frame: frameRect, textContainer: container)
@@ -68,6 +60,8 @@ class MemoTextView: NSTextView, NSTextViewDelegate {
             memo.update(content: self.string)
             Storage.saveMemo(memo: memo)
             memo.changed = false
+            // tell memo list memo saved
+            NotificationCenter.default.post(name: .memoListShouldSync, object: nil, userInfo: ["memo":memo])
         }
     }
     
@@ -87,17 +81,25 @@ class MemoTextView: NSTextView, NSTextViewDelegate {
         let flags = event.modifierFlags
         if !self.hasMarkedText() && (code == kVK_Escape || (flags.contains(.command) && code == kVK_ANSI_S)) {
             self.deactivate()
-        }else if code == kVK_Return {
-            guard let storage = self.textStorage else { return }
-            super.keyDown(with: event)
-            storage.setAttributedString(Renderer.render(content: self.string))
-            self.save()
         } else {
             guard let memo = self.memo else { return }
             memo.changed = true
             super.keyDown(with: event)
         }
     }
+    
+    override func shouldChangeText(in affectedCharRange: NSRange, replacementString: String?) -> Bool {
+        guard let rep = replacementString,
+              let storage = self.textStorage
+        else {return false}
+        storage.replaceCharacters(in: affectedCharRange, with: rep)
+        guard let range = Range(self.selectedRange(), in: self.string) else {return false}
+        let paraRange = storage.string.paragraphRange(for: range)
+        let attr = MDParser.render(content: self.string, with: paraRange)
+        storage.setAttributes(attr, range: NSRange(paraRange, in: self.string))
+        return false
+    }
+    
     
     override func acceptsFirstMouse(for event: NSEvent?) -> Bool {
         return true
