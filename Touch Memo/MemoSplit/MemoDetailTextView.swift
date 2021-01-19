@@ -34,8 +34,7 @@ class MemoDetailTextView: NSTextView {
     }
     
     override func didChangeText() {
-        guard let storage = self.textStorage,
-              !self.hasMarkedText()
+        guard let storage = self.textStorage
         else { return }
         guard let range = Range(self.selectedRange(), in: self.string) else { return }
         let paraRange = storage.string.paragraphRange(for: range)

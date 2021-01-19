@@ -10,9 +10,8 @@ import Cocoa
 class MDParser: NSObject {
     
     static let headerRegex = "^#{1,3}"
-    static let orderRegex = "^[0-9]+."
+    static let orderRegex = "^[0-9]+\\."
     static let bulletRegex = "^-"
-    static let eol = "\n"
     
     static func getTitle(content: String) -> String {
         return RE.replace(validateString: content, withContent: "", inRegex: "^#{1,3} +")

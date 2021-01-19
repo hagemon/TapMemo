@@ -884,18 +884,14 @@
                             <allowedToolbarItems>
                                 <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="QQO-7P-wUY"/>
                                 <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="5m7-3m-o3S"/>
-                                <toolbarItem implicitItemIdentifier="A8004794-089A-4FAC-AB1A-4EC29424F54B" label="Add" paletteLabel="Add" tag="-1" navigational="YES" id="a3K-nL-Gcy">
+                                <toolbarItem implicitItemIdentifier="A8004794-089A-4FAC-AB1A-4EC29424F54B" label="Add" paletteLabel="Add" tag="-1" sizingBehavior="auto" navigational="YES" id="a3K-nL-Gcy">
                                     <imageReference key="image" image="plus" catalog="system" symbolScale="small"/>
-                                    <size key="minSize" width="28.5" height="24"/>
-                                    <size key="maxSize" width="28.5" height="24"/>
                                     <connections>
                                         <action selector="createMemo:" target="0gh-VZ-DRy" id="eXR-cq-Joq"/>
                                     </connections>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="9EE6F51C-D930-4AD0-A4F3-5F7344AC3A19" label="Pin" paletteLabel="Pin" tag="-1" navigational="YES" id="Ye4-VI-WkI">
+                                <toolbarItem implicitItemIdentifier="9EE6F51C-D930-4AD0-A4F3-5F7344AC3A19" label="Pin" paletteLabel="Pin" tag="-1" sizingBehavior="auto" navigational="YES" id="Ye4-VI-WkI">
                                     <imageReference key="image" image="pin" catalog="system" symbolScale="small"/>
-                                    <size key="minSize" width="32" height="27"/>
-                                    <size key="maxSize" width="32" height="27"/>
                                     <connections>
                                         <action selector="pinMemo:" target="0gh-VZ-DRy" id="ddi-1h-6wj"/>
                                     </connections>
@@ -936,10 +932,8 @@
                             <allowedToolbarItems>
                                 <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="iXi-m9-mex"/>
                                 <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="b4B-qr-XiU"/>
-                                <toolbarItem implicitItemIdentifier="B066CBB8-04AF-4C87-8EC8-EB7CC2C8AFDF" label="Pin" paletteLabel="Pin" tag="-1" id="9nM-iL-DLK">
+                                <toolbarItem implicitItemIdentifier="B066CBB8-04AF-4C87-8EC8-EB7CC2C8AFDF" label="Pin" paletteLabel="Pin" tag="-1" sizingBehavior="auto" id="9nM-iL-DLK">
                                     <imageReference key="image" image="pin" catalog="system" symbolScale="small"/>
-                                    <size key="minSize" width="37" height="30"/>
-                                    <size key="maxSize" width="37" height="30"/>
                                     <connections>
                                         <action selector="pin:" target="p5C-m3-Mqp" id="LSZ-vw-QeZ"/>
                                     </connections>
@@ -955,7 +949,6 @@
                         </connections>
                     </window>
                     <connections>
-                        <outlet property="pinButton" destination="9nM-iL-DLK" id="4XY-BR-OqM"/>
                         <segue destination="HtA-p5-Hh2" kind="relationship" relationship="window.shadowedContentViewController" id="peg-um-Dor"/>
                     </connections>
                 </windowController>
