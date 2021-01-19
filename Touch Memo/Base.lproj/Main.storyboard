@@ -3,7 +3,6 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17701"/>
         <capability name="Image references" minToolsVersion="12.0"/>
-        <capability name="Search Toolbar Item" minToolsVersion="12.0" minSystemVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -881,55 +880,31 @@
                             <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </view>
-                        <toolbar key="toolbar" implicitIdentifier="49329734-A5DC-47EC-AAB4-D178623B40AD" autosavesConfiguration="NO" displayMode="iconOnly" sizeMode="regular" id="aoV-R1-Hzj">
+                        <toolbar key="toolbar" implicitIdentifier="14C2D0E2-11E2-4676-9963-CB7AC3B6F4C2" autosavesConfiguration="NO" displayMode="iconOnly" sizeMode="regular" id="gFK-mY-nkl">
                             <allowedToolbarItems>
-                                <toolbarItem implicitItemIdentifier="1C53CB3C-C20D-49D8-A4F4-96BA9E05F777" label="Add" paletteLabel="Add" tag="-1" navigational="YES" id="GmM-pW-vSu">
+                                <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="QQO-7P-wUY"/>
+                                <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="5m7-3m-o3S"/>
+                                <toolbarItem implicitItemIdentifier="A8004794-089A-4FAC-AB1A-4EC29424F54B" label="Add" paletteLabel="Add" tag="-1" navigational="YES" id="a3K-nL-Gcy">
                                     <imageReference key="image" image="plus" catalog="system" symbolScale="small"/>
-                                    <size key="minSize" width="33.5" height="26"/>
-                                    <size key="maxSize" width="33.5" height="26"/>
+                                    <size key="minSize" width="28.5" height="24"/>
+                                    <size key="maxSize" width="28.5" height="24"/>
                                     <connections>
-                                        <action selector="createMemo:" target="0gh-VZ-DRy" id="eXQ-e6-sfJ"/>
+                                        <action selector="createMemo:" target="0gh-VZ-DRy" id="eXR-cq-Joq"/>
                                     </connections>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="8221EEAD-9A60-4704-AEA6-5B8B5A872611" label="Pin" paletteLabel="Pin" tag="-1" navigational="YES" id="24N-CL-1Ru">
+                                <toolbarItem implicitItemIdentifier="9EE6F51C-D930-4AD0-A4F3-5F7344AC3A19" label="Pin" paletteLabel="Pin" tag="-1" navigational="YES" id="Ye4-VI-WkI">
                                     <imageReference key="image" image="pin" catalog="system" symbolScale="small"/>
-                                    <size key="minSize" width="37" height="30"/>
-                                    <size key="maxSize" width="37" height="30"/>
+                                    <size key="minSize" width="32" height="27"/>
+                                    <size key="maxSize" width="32" height="27"/>
                                     <connections>
-                                        <action selector="pinMemo:" target="0gh-VZ-DRy" id="Wy5-Hj-nix"/>
+                                        <action selector="pinMemo:" target="0gh-VZ-DRy" id="ddi-1h-6wj"/>
                                     </connections>
-                                </toolbarItem>
-                                <searchToolbarItem implicitItemIdentifier="F54AE046-BC93-4A90-B101-14232F661A89" label="Search" paletteLabel="Search" visibilityPriority="1001" id="pNi-kS-MeV">
-                                    <nil key="toolTip"/>
-                                    <searchField key="view" verticalHuggingPriority="750" textCompletion="NO" id="LbE-Tf-msL">
-                                        <rect key="frame" x="0.0" y="0.0" width="100" height="21"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <searchFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" usesSingleLineMode="YES" bezelStyle="round" sendsSearchStringImmediately="YES" id="71g-5f-8iW">
-                                            <font key="font" usesAppearanceFont="YES"/>
-                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                        </searchFieldCell>
-                                    </searchField>
-                                </searchToolbarItem>
-                                <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="Sog-1W-kqw"/>
-                                <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="FNc-Oq-ssH"/>
-                                <toolbarItem implicitItemIdentifier="9B70AADE-F94A-419A-AD8D-CAF55457586F" label="Add2" paletteLabel="Add2" image="plus" catalog="system" sizingBehavior="auto" navigational="YES" id="qg4-rh-9kK">
-                                    <nil key="toolTip"/>
-                                    <button key="view" verticalHuggingPriority="750" id="o4K-l4-bo7">
-                                        <rect key="frame" x="0.0" y="14" width="40.5" height="32"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <buttonCell key="cell" type="bevel" title="Button" bezelStyle="rounded" image="plus" catalog="system" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="C93-cX-LKo">
-                                            <behavior key="behavior" lightByContents="YES"/>
-                                            <font key="font" metaFont="system"/>
-                                        </buttonCell>
-                                    </button>
                                 </toolbarItem>
                             </allowedToolbarItems>
                             <defaultToolbarItems>
-                                <toolbarItem reference="GmM-pW-vSu"/>
-                                <toolbarItem reference="24N-CL-1Ru"/>
-                                <toolbarItem reference="FNc-Oq-ssH"/>
-                                <searchToolbarItem reference="pNi-kS-MeV"/>
+                                <toolbarItem reference="5m7-3m-o3S"/>
+                                <toolbarItem reference="a3K-nL-Gcy"/>
+                                <toolbarItem reference="Ye4-VI-WkI"/>
                             </defaultToolbarItems>
                         </toolbar>
                         <connections>

@@ -9,11 +9,8 @@ import Cocoa
 
 class MemoWindowController: NSWindowController, NSWindowDelegate {
     
-    @IBOutlet weak var pinButton: NSToolbarItem!
     var isMoved = false
-    
-
-    
+     
     override func windowDidLoad() {
         super.windowDidLoad()
     
@@ -27,7 +24,7 @@ class MemoWindowController: NSWindowController, NSWindowDelegate {
     }
     
     @IBAction func pin(_ sender:Any) {
-        guard let button = self.pinButton,
+        guard let button = sender as? NSToolbarItem,
               let window = self.window
         else { return }
         if window.level == .statusBar {

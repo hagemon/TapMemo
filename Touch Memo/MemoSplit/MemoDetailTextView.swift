@@ -25,6 +25,8 @@ class MemoDetailTextView: NSTextView {
                 return
             }
             MemoListManager.shared.saveSelectedMemo()
+            guard let memo = MemoListManager.shared.selectedMemo() else { return }
+            NotificationCenter.default.post(name: .memoListShouldSync, object: nil, userInfo: ["memo":memo])
         }
         else {
             super.keyDown(with: event)

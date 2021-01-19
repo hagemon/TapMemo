@@ -14,7 +14,5 @@ class MemoWindow: NSWindow {
         self.isMovableByWindowBackground = true
         self.level = .statusBar
     }
-
-
     
 }

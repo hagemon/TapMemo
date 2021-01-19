@@ -12,21 +12,22 @@ class MDParser: NSObject {
     static let headerRegex = "^#{1,3}"
     static let orderRegex = "^[0-9]+."
     static let bulletRegex = "^-"
+    static let eol = "\n"
     
     static func getTitle(content: String) -> String {
         return RE.replace(validateString: content, withContent: "", inRegex: "^#{1,3} +")
     }
     
     static func renderAll(storage: NSTextStorage) -> NSAttributedString {
-        let result = NSMutableAttributedString(string: storage.string)
+        let result = NSMutableAttributedString(string: storage.string, attributes: self.normalAttribute())
         let paragraphs = storage.paragraphs
         var start = 0
         for s in paragraphs {
-            guard let range = Range(NSRange(location: 0, length: s.string.count), in: s.string)
+            guard let range = Range(NSRange(location: 0, length: s.string.utf16.count), in: s.string)
             else {continue}
             let attr = self.render(content: s.string, with: range)
-            let paraRange = NSRange(location: start, length: s.string.count)
-            start += s.string.count
+            let paraRange = NSRange(location: start, length: s.string.utf16.count)
+            start += s.string.utf16.count
             result.setAttributes(attr, range: paraRange)
         }
         return result
@@ -36,9 +37,7 @@ class MDParser: NSObject {
     // by observing changes of NSTextStorage
     // get list paragraphs by concatenating replaced line with regex
     // then correct number of these paragraphs
-    
-    // TODO: Emoji typing
-    
+        
     static func render(content: String, with range: Range<String.Index>) -> [NSAttributedString.Key: Any]{
         let para = String(content[range])
         // header
