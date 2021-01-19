@@ -32,6 +32,13 @@ class MDParser: NSObject {
         return result
     }
     
+    // TODO: Correcting ordered list
+    // by observing changes of NSTextStorage
+    // get list paragraphs by concatenating replaced line with regex
+    // then correct number of these paragraphs
+    
+    // TODO: Emoji typing
+    
     static func render(content: String, with range: Range<String.Index>) -> [NSAttributedString.Key: Any]{
         let para = String(content[range])
         // header

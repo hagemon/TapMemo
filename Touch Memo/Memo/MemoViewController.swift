@@ -7,7 +7,7 @@
 
 import Cocoa
 
-class MemoViewController: NSViewController {
+class MemoViewController: NSViewController, NSTextViewDelegate {
 
     @IBOutlet var textView: MemoTextView!
     override func viewDidLoad() {

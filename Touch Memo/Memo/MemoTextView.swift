@@ -83,16 +83,14 @@ class MemoTextView: NSTextView {
         }
     }
     
-    override func shouldChangeText(in affectedCharRange: NSRange, replacementString: String?) -> Bool {
-        guard let rep = replacementString,
-              let storage = self.textStorage
-        else {return false}
-        storage.replaceCharacters(in: affectedCharRange, with: rep)
-        guard let range = Range(self.selectedRange(), in: self.string) else {return false}
+    override func didChangeText() {
+        guard let storage = self.textStorage,
+              !self.hasMarkedText()
+        else { return }
+        guard let range = Range(self.selectedRange(), in: self.string) else { return }
         let paraRange = storage.string.paragraphRange(for: range)
         let attr = MDParser.render(content: self.string, with: paraRange)
         storage.setAttributes(attr, range: NSRange(paraRange, in: self.string))
-        return false
     }
     
     
