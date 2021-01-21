@@ -22,7 +22,7 @@ class MDParser: NSObject {
     static let headerRegex = "^#{1,3}"
     static let orderRegex = "^[0-9]+\\."
     static let bulletRegex = "^-"
-    static let orderListBlockRegex = "(?<=(^|\n))([0-9]+\\..*(\n)?)+"
+    static let orderListBlockRegex = "(?<=(^|\n))([0-9]+\\..*(\n)?)*(?<=(^|\n))([0-9]+\\..*)+"
     static let specielRegex = "(?<=(^|\n))(#{1,3}|[0-9]+\\.|-)"
     
     static func getTitle(content: String) -> String {
@@ -73,19 +73,21 @@ class MDParser: NSObject {
         
         // style
         for (_, styleRange) in RE.regularExpressionRange(validateString: content, inRegex: self.specielRegex){
-            attrs.append([.foregroundColor: NSColor(deviceRed: 244.0/255, green: 211.0/255.0, blue: 3.0/255.0, alpha: 1.0)])
+            attrs.append([
+                .foregroundColor: NSColor(deviceRed: 244.0/255, green: 211.0/255.0, blue: 3.0/255.0, alpha: 1.0)
+            ])
             attrRanges.append(styleRange)
         }
         
         return Rendered(attributes: attrs, attributedRanges: attrRanges)
     }
     
-    private static func autoOrder(content: String) -> [Replaced] {
+    static func autoOrder(content: String) -> [Replaced] {
         var result:[Replaced] = []
         for (block, range) in RE.regularExpressionRange(validateString: content, inRegex: self.orderListBlockRegex) {
-            let replaced = RE.replace(validateString: block, withContent: "", inRegex: "(?<=(^|\n))[0-9]+\\.")
+            let replaced = RE.replace(validateString: block, withContent: "", inRegex: "(?<=(^|\n))[0-9]+")
             var splited = replaced.split(separator: "\n")
-            splited = splited.enumerated().map({(i, line) in "\(i+1)."+line})
+            splited = splited.enumerated().map({(i, line) in "\(i+1)"+line})
             let s = splited.joined(separator: "\n")
             guard let subRange = Range(range, in: content) else {continue}
             result.append(Replaced(string: s, range: subRange))

@@ -84,17 +84,15 @@ class MemoTextView: NSTextView {
     }
     
     override func didChangeText() {
-        guard let storage = self.textStorage
-        else { return }
-        guard let range = Range(self.selectedRange(), in: self.string) else { return }
-        let paraRange = storage.string.paragraphRange(for: range)
-        let rendered = MDParser.render(content: self.string, with: paraRange)
-        for i in 0..<rendered.attributedRanges.count {
-            let attr = rendered.attributes[i]
-            let range = rendered.attributedRanges[i]
-            storage.addAttributes(attr, range: range)
+        let selectedRange = self.selectedRange()
+        for replaced in MDParser.autoOrder(content: self.string) {
+            self.string.replaceSubrange(replaced.range, with: replaced.string)
         }
-//        storage.setAttributes(attr, range: NSRange(paraRange, in: self.string))
+        guard let textStorage = self.textStorage
+        else { return }
+        textStorage.setAttributedString(MDParser.renderAll(storage: textStorage))
+        self.setSelectedRange(selectedRange)
+        MemoListManager.shared.updateSelectedMemo(content: self.string)
     }
     
     
