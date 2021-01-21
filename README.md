@@ -22,4 +22,4 @@ A convenient, clean memo app for macOS.
 # Todo
 
 - Support nesting markdown syntax.
-- Auto order list
+- Global render
