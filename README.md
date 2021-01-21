@@ -2,7 +2,7 @@
 
 A convenient, clean memo app for macOS.
 
-<img src="Resources/screenshot.png" width=50% /> 
+<img src="Resources/screenshot.png" width=80% /> 
 
 
 # Usage

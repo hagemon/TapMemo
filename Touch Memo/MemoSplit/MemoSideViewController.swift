@@ -40,7 +40,7 @@ class MemoSideViewController: NSViewController, NSTableViewDataSource, NSTableVi
     }
     
     func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
-        return 55
+        return 60
     }
     
     func tableView(_ tableView: NSTableView, shouldSelectRow row: Int) -> Bool {
