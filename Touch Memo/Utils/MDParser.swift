@@ -37,22 +37,15 @@ class MDParser: NSObject {
             guard let range = Range(NSRange(location: 0, length: s.string.utf16.count), in: s.string)
             else {continue}
             let rendered = self.render(content: s.string, with: range)
-//            let paraRange = NSRange(location: start, length: s.string.utf16.count)
             for i in 0..<rendered.attributes.count {
                 let renderedRange = rendered.attributedRanges[i]
                 let range = NSRange(location: start+renderedRange.location, length: renderedRange.length)
                 result.addAttributes(rendered.attributes[i], range: range)
             }
             start += s.string.utf16.count
-//            result.setAttributes(rendered.attribute, range: paraRange)
         }
         return result
     }
-    
-    // TODO: Correcting ordered list
-    // by observing changes of NSTextStorage
-    // get list paragraphs by concatenating replaced line with regex
-    // then correct number of these paragraphs
         
     static func render(content: String, with range: Range<String.Index>) -> Rendered{
         let para = String(content[range])
@@ -90,7 +83,12 @@ class MDParser: NSObject {
     private static func autoOrder(content: String) -> [Replaced] {
         var result:[Replaced] = []
         for (block, range) in RE.regularExpressionRange(validateString: content, inRegex: self.orderListBlockRegex) {
-            
+            let replaced = RE.replace(validateString: block, withContent: "", inRegex: "(?<=(^|\n))[0-9]+\\.")
+            var splited = replaced.split(separator: "\n")
+            splited = splited.enumerated().map({(i, line) in "\(i+1)."+line})
+            let s = splited.joined(separator: "\n")
+            guard let subRange = Range(range, in: content) else {continue}
+            result.append(Replaced(string: s, range: subRange))
         }
         return result
     }
