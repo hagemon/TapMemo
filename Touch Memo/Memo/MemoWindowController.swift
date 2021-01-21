@@ -13,7 +13,7 @@ class MemoWindowController: NSWindowController, NSWindowDelegate {
      
     override func windowDidLoad() {
         super.windowDidLoad()
-    
+        
         // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
     }
     
@@ -27,12 +27,16 @@ class MemoWindowController: NSWindowController, NSWindowDelegate {
         guard let button = sender as? NSToolbarItem,
               let window = self.window
         else { return }
+        let config = NSImage.SymbolConfiguration(scale: .small)
         if window.level == .statusBar {
             window.level = .normal
-            button.image = NSImage(systemSymbolName: "pin.slash", accessibilityDescription: nil)
+            let image = NSImage(systemSymbolName: "pin.slash", accessibilityDescription: nil)
+            button.image = image?.withSymbolConfiguration(config)
+                        
         } else {
             window.level = .statusBar
-            button.image = NSImage(systemSymbolName: "pin", accessibilityDescription: nil)
+            let image = NSImage(systemSymbolName: "pin", accessibilityDescription: nil)
+            button.image = image?.withSymbolConfiguration(config)
         }
     }
 
