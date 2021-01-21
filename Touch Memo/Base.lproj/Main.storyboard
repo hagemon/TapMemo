@@ -744,9 +744,9 @@
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="Yfy-vO-WfJ">
-                                                                    <rect key="frame" x="0.0" y="29" width="143" height="16"/>
+                                                                    <rect key="frame" x="0.0" y="23" width="143" height="22"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="height" constant="16" id="nV6-VW-06R"/>
+                                                                        <constraint firstAttribute="height" constant="22" id="nV6-VW-06R"/>
                                                                     </constraints>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Title" id="mM5-2C-vCk">
                                                                         <font key="font" metaFont="systemBold" size="16"/>
@@ -757,7 +757,7 @@
                                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="0P1-d0-Isb">
                                                                     <rect key="frame" x="0.0" y="5" width="143" height="16"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="height" constant="16" id="DeN-vV-Aa9"/>
+                                                                        <constraint firstAttribute="height" constant="16" id="VlX-4N-88A"/>
                                                                     </constraints>
                                                                     <textFieldCell key="cell" lineBreakMode="clipping" title="Date" id="1Nm-U4-loT">
                                                                         <font key="font" metaFont="system"/>
@@ -767,12 +767,12 @@
                                                                 </textField>
                                                             </subviews>
                                                             <constraints>
-                                                                <constraint firstItem="0P1-d0-Isb" firstAttribute="leading" secondItem="EBC-gV-1nQ" secondAttribute="leading" constant="2" id="XKH-1a-UYy"/>
-                                                                <constraint firstAttribute="bottom" secondItem="0P1-d0-Isb" secondAttribute="bottom" constant="5" id="bWS-16-MJQ"/>
+                                                                <constraint firstAttribute="trailing" secondItem="0P1-d0-Isb" secondAttribute="trailing" constant="2" id="FlG-Zk-V1G"/>
                                                                 <constraint firstItem="Yfy-vO-WfJ" firstAttribute="leading" secondItem="EBC-gV-1nQ" secondAttribute="leading" constant="2" id="foU-ay-86U"/>
-                                                                <constraint firstAttribute="trailing" secondItem="0P1-d0-Isb" secondAttribute="trailing" constant="2" id="pVf-UC-FP1"/>
+                                                                <constraint firstItem="0P1-d0-Isb" firstAttribute="top" secondItem="Yfy-vO-WfJ" secondAttribute="bottom" constant="2" id="g4H-Sz-JN4"/>
                                                                 <constraint firstAttribute="trailing" secondItem="Yfy-vO-WfJ" secondAttribute="trailing" constant="2" id="uKb-bI-KbP"/>
                                                                 <constraint firstItem="Yfy-vO-WfJ" firstAttribute="top" secondItem="EBC-gV-1nQ" secondAttribute="top" constant="10" id="vu0-wW-UKL"/>
+                                                                <constraint firstItem="0P1-d0-Isb" firstAttribute="leading" secondItem="EBC-gV-1nQ" secondAttribute="leading" constant="2" id="yt1-Ox-Urk"/>
                                                             </constraints>
                                                             <connections>
                                                                 <outlet property="textField" destination="Yfy-vO-WfJ" id="dGG-MV-3b1"/>
