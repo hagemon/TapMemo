@@ -88,8 +88,13 @@ class MemoTextView: NSTextView {
         else { return }
         guard let range = Range(self.selectedRange(), in: self.string) else { return }
         let paraRange = storage.string.paragraphRange(for: range)
-        let attr = MDParser.render(content: self.string, with: paraRange)
-        storage.setAttributes(attr, range: NSRange(paraRange, in: self.string))
+        let rendered = MDParser.render(content: self.string, with: paraRange)
+        for i in 0..<rendered.attributedRanges.count {
+            let attr = rendered.attributes[i]
+            let range = rendered.attributedRanges[i]
+            storage.addAttributes(attr, range: range)
+        }
+//        storage.setAttributes(attr, range: NSRange(paraRange, in: self.string))
     }
     
     

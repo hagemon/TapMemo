@@ -7,11 +7,23 @@
 
 import Cocoa
 
+struct Rendered {
+    let attributes: [[NSAttributedString.Key: Any]]
+    let attributedRanges: [NSRange]
+}
+
+struct Replaced {
+    let string: String
+    let range: Range<String.Index>
+}
+
 class MDParser: NSObject {
     
     static let headerRegex = "^#{1,3}"
     static let orderRegex = "^[0-9]+\\."
     static let bulletRegex = "^-"
+    static let orderListBlockRegex = "(?<=(^|\n))([0-9]+\\..*(\n)?)+"
+    static let specielRegex = "(?<=(^|\n))(#{1,3}|[0-9]+\\.|-)"
     
     static func getTitle(content: String) -> String {
         return RE.replace(validateString: content, withContent: "", inRegex: "^#{1,3} +")
@@ -24,10 +36,15 @@ class MDParser: NSObject {
         for s in paragraphs {
             guard let range = Range(NSRange(location: 0, length: s.string.utf16.count), in: s.string)
             else {continue}
-            let attr = self.render(content: s.string, with: range)
-            let paraRange = NSRange(location: start, length: s.string.utf16.count)
+            let rendered = self.render(content: s.string, with: range)
+//            let paraRange = NSRange(location: start, length: s.string.utf16.count)
+            for i in 0..<rendered.attributes.count {
+                let renderedRange = rendered.attributedRanges[i]
+                let range = NSRange(location: start+renderedRange.location, length: renderedRange.length)
+                result.addAttributes(rendered.attributes[i], range: range)
+            }
             start += s.string.utf16.count
-            result.setAttributes(attr, range: paraRange)
+//            result.setAttributes(rendered.attribute, range: paraRange)
         }
         return result
     }
@@ -37,8 +54,10 @@ class MDParser: NSObject {
     // get list paragraphs by concatenating replaced line with regex
     // then correct number of these paragraphs
         
-    static func render(content: String, with range: Range<String.Index>) -> [NSAttributedString.Key: Any]{
+    static func render(content: String, with range: Range<String.Index>) -> Rendered{
         let para = String(content[range])
+        var attrs: [[NSAttributedString.Key: Any]] = []
+        var attrRanges: [NSRange] = []
         // header
         var attr:[NSAttributedString.Key: Any] = self.normalAttribute()
         let headerMatch = RE.regularExpression(validateString: para, inRegex: headerRegex)
@@ -56,7 +75,24 @@ class MDParser: NSObject {
                 attr = self.listAttribute()
             }
         }
-        return attr
+        attrs.append(attr)
+        attrRanges.append(NSRange(range, in: content))
+        
+        // style
+        for (_, styleRange) in RE.regularExpressionRange(validateString: content, inRegex: self.specielRegex){
+            attrs.append([.foregroundColor: NSColor(deviceRed: 244.0/255, green: 211.0/255.0, blue: 3.0/255.0, alpha: 1.0)])
+            attrRanges.append(styleRange)
+        }
+        
+        return Rendered(attributes: attrs, attributedRanges: attrRanges)
+    }
+    
+    private static func autoOrder(content: String) -> [Replaced] {
+        var result:[Replaced] = []
+        for (block, range) in RE.regularExpressionRange(validateString: content, inRegex: self.orderListBlockRegex) {
+            
+        }
+        return result
     }
     
     private static func headerAttribute(level: Int) -> [NSAttributedString.Key: Any] {

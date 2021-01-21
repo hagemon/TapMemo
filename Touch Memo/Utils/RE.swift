@@ -26,6 +26,24 @@ class RE: NSObject {
         }
     }
     
+    static func regularExpressionRange(validateString:String, inRegex regex:String) -> [(String, NSRange)]{
+        do {
+            let re: NSRegularExpression = try NSRegularExpression(pattern: regex, options: [])
+            let matches = re.matches(in: validateString, options:[], range: NSRange(location: 0, length: validateString.count))
+            
+            var data:[(String, NSRange)] = Array()
+            for item in matches {
+                let string = (validateString as NSString).substring(with: item.range)
+                data.append((string, item.range))
+            }
+            
+            return data
+        }
+        catch {
+            return []
+        }
+    }
+    
     static func replace(validateString: String, withContent content: String, inRegex regex:String) -> String {
         do {
             let re: NSRegularExpression = try NSRegularExpression(pattern: regex, options: [])
