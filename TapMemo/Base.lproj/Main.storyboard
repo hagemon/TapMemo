@@ -12,11 +12,11 @@
                 <application id="hnw-xV-0zn" sceneMemberID="viewController">
                     <menu key="mainMenu" title="Main Menu" systemMenu="main" id="AYu-sK-qS6">
                         <items>
-                            <menuItem title="Touch Memo" id="1Xt-HY-uBw">
+                            <menuItem title="TapMemo" id="1Xt-HY-uBw">
                                 <modifierMask key="keyEquivalentModifierMask"/>
-                                <menu key="submenu" title="Touch Memo" systemMenu="apple" id="uQy-DD-JDr">
+                                <menu key="submenu" title="TapMemo" systemMenu="apple" id="uQy-DD-JDr">
                                     <items>
-                                        <menuItem title="About Touch Memo" id="5kV-Vb-QxS">
+                                        <menuItem title="About TapMemo" id="5kV-Vb-QxS">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="orderFrontStandardAboutPanel:" target="Ady-hI-5gd" id="Exp-CZ-Vem"/>
@@ -30,7 +30,7 @@
                                             <menu key="submenu" title="Services" systemMenu="services" id="hz9-B4-Xy5"/>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="4je-JR-u6R"/>
-                                        <menuItem title="Hide Touch Memo" keyEquivalent="h" id="Olw-nP-bQN">
+                                        <menuItem title="Hide TapMemo" keyEquivalent="h" id="Olw-nP-bQN">
                                             <connections>
                                                 <action selector="hide:" target="Ady-hI-5gd" id="PnN-Uc-m68"/>
                                             </connections>
@@ -48,7 +48,7 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="kCx-OE-vgT"/>
-                                        <menuItem title="Quit Touch Memo" keyEquivalent="q" id="4sb-4s-VLi">
+                                        <menuItem title="Quit TapMemo" keyEquivalent="q" id="4sb-4s-VLi">
                                             <connections>
                                                 <action selector="terminate:" target="Ady-hI-5gd" id="Te7-pn-YzF"/>
                                             </connections>
@@ -661,7 +661,7 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="Help" systemMenu="help" id="F2S-fz-NVQ">
                                     <items>
-                                        <menuItem title="Touch Memo Help" keyEquivalent="?" id="FKE-Sm-Kum">
+                                        <menuItem title="TapMemo Help" keyEquivalent="?" id="FKE-Sm-Kum">
                                             <connections>
                                                 <action selector="showHelp:" target="Ady-hI-5gd" id="y7X-2Q-9no"/>
                                             </connections>
@@ -718,7 +718,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="180" height="300"/>
                                 <clipView key="contentView" id="v4Y-yZ-jvZ">
                                     <rect key="frame" x="0.0" y="0.0" width="180" height="300"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" rowHeight="55" rowSizeStyle="automatic" viewBased="YES" id="nlY-AM-ueB">
                                             <rect key="frame" x="0.0" y="0.0" width="180" height="300"/>
@@ -825,7 +825,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="270" height="300"/>
                                 <clipView key="contentView" drawsBackground="NO" id="tav-tt-GJx">
                                     <rect key="frame" x="0.0" y="0.0" width="270" height="300"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <textView importsGraphics="NO" richText="NO" verticallyResizable="YES" smartInsertDelete="YES" id="IHw-TS-QdU" customClass="MemoDetailTextView" customModule="Touch_Memo" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="270" height="300"/>
@@ -968,7 +968,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="240"/>
                                 <clipView key="contentView" drawsBackground="NO" id="i27-An-fN2">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="240"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <textView importsGraphics="NO" richText="NO" verticallyResizable="YES" smartInsertDelete="YES" id="EPm-1d-Tjj" customClass="MemoTextView" customModule="Touch_Memo" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="240"/>
@@ -1012,7 +1012,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="pin" catalog="system" width="13" height="14"/>
-        <image name="plus" catalog="system" width="12" height="11"/>
+        <image name="pin" catalog="system" width="32" height="32"/>
+        <image name="plus" catalog="system" width="32" height="32"/>
     </resources>
 </document>
