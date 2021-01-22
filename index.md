@@ -1,37 +1,26 @@
-## Welcome to GitHub Pages
+# Welcome to TapMemo support page
 
-You can use the [editor on GitHub](https://github.com/hagemon/TapMemo/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+TapMemo is a convenient, clean memo app for macOS.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+<img src="https://github.com/hagemon/TapMemo/blob/main/Resources/screenshot.png" width=80% /> 
 
-### Markdown
+## Usage
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+- Try tapping default key `CMD+SHIFT+D` to create a clean memo.
+- Support basic markdown syntax including:
+  - Headers level 1~3
+  - ordered list
+  - unordered list
+- Manage your memos by selecting `Memos` on status bar icon.
 
-```markdown
-Syntax highlighted code block
+## Contact
 
-# Header 1
-## Header 2
-### Header 3
+If you have any suggestions or issues, contact me on ooonefolder@gmail.com or github [issue page](https://github.com/hagemon/TapMemo/issues).
 
-- Bulleted
-- List
+Codes are avaliable on my [github](https://github.com/hagemon/TapMemo).
 
-1. Numbered
-2. List
+Enjoy!
 
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/hagemon/TapMemo/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+## Todo list
+- Support local render
+- Support nesting syntax for Markdown.
