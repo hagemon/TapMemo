@@ -2,7 +2,7 @@
 
 TapMemo is a convenient, clean memo app for macOS.
 
-![Image](https://github.com/hagemon/TapMemo/blob/main/Resources/screenshot.png)
+![Image](1.png)
 
 ## Usage
 
