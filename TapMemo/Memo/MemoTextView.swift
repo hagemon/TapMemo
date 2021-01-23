@@ -78,7 +78,9 @@ class MemoTextView: NSTextView {
         if !self.hasMarkedText() && (code == kVK_Escape || (flags.contains(.command) && code == kVK_ANSI_S)) {
             self.deactivate()
         } else {
-            guard let memo = self.memo else { return }
+            guard self.isActive,
+                  let memo = self.memo
+            else { return }
             if !memo.changed {
                 memo.changed = true
                 NotificationCenter.default.post(name: .memoStatusDidChange, object: nil, userInfo: ["memo": memo])

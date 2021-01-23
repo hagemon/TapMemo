@@ -27,7 +27,8 @@ class MemoWindowController: NSWindowController, NSWindowDelegate {
     
     @objc func changeStatus(_ notification:NSNotification) {
         guard let info = notification.userInfo,
-              let memo = info["memo"] as? Memo
+              let memo = info["memo"] as? Memo,
+              memo == self.memo
         else { return }
         let changed = memo.changed
         if changed {
