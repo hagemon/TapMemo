@@ -57,6 +57,7 @@ class MemoTextView: NSTextView {
             memo.changed = false
             // tell memo list memo saved
             NotificationCenter.default.post(name: .memoListShouldSync, object: nil, userInfo: ["memo":memo])
+            NotificationCenter.default.post(name: .memoStatusDidChange, object: nil, userInfo: ["memo": memo])
         }
     }
     
@@ -78,7 +79,10 @@ class MemoTextView: NSTextView {
             self.deactivate()
         } else {
             guard let memo = self.memo else { return }
-            memo.changed = true
+            if !memo.changed {
+                memo.changed = true
+                NotificationCenter.default.post(name: .memoStatusDidChange, object: nil, userInfo: ["memo": memo])
+            }
             super.keyDown(with: event)
         }
     }

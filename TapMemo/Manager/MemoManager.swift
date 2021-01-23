@@ -18,6 +18,13 @@ class MemoManager: NSObject {
             print("Could not get default rect in MemoManager.createMemo")
             return
         }
+        
+        for controller in self.controllers {
+            if controller.memo == memo {
+                return
+            }
+        }
+        
         guard let storyboard = NSStoryboard.main,
               let controller = storyboard.instantiateController(withIdentifier: "Memo") as? MemoWindowController,
               let window = controller.window,
@@ -27,6 +34,7 @@ class MemoManager: NSObject {
             return
         }
         textView.memo = memo
+        controller.memo = memo
         window.setFrameOrigin(rect.origin)
         self.controllers.append(controller)
         NSApplication.shared.activate(ignoringOtherApps: true)

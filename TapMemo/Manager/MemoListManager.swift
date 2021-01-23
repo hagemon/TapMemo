@@ -38,7 +38,6 @@ class MemoListManager: NSObject {
     
     func updateSelectedMemo(content: String) {
         guard let memo = self.selectedMemo() else { return }
-        memo.changed = true
         memo.update(content: content)
     }
     
@@ -46,7 +45,6 @@ class MemoListManager: NSObject {
         guard let memo = self.selectedMemo() else { return }
         if memo.changed {
             Storage.saveMemo(memo: memo)
-            memo.changed = false
         }
     }
     

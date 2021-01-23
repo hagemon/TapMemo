@@ -29,6 +29,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         menu.addItem(withTitle: "Quit", action: #selector(self.exit), keyEquivalent: "q")
         // Storage.removeAllMemos()
 //        self.openMemos()
+        
+        if Storage.loadFirstFlag() {
+            Storage.saveFirstFlag()
+            self.openHelp()
+        }
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
@@ -50,6 +55,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let windowController = storyboard.instantiateController(withIdentifier: "Memos") as! NSWindowController
         NSApplication.shared.activate(ignoringOtherApps: true)
         windowController.showWindow(nil)
+    }
+    
+    @objc func openHelp() {
+        
     }
 }
 

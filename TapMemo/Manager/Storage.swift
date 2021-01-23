@@ -33,6 +33,15 @@ class Storage: NSObject {
         UserDefaults.standard.setValue(modifiers.carbonFlags, forKey: "modifiersFlags")
     }
     
+    static func loadFirstFlag() -> Bool {
+        guard let _ = UserDefaults.standard.value(forKey: "firstLogin") else { return false }
+        return true
+    }
+    
+    static func saveFirstFlag() {
+        UserDefaults.standard.setValue(false, forKey: "firstLogin")
+    }
+    
     static func saveMemo(memo: Memo) {
         let key = memo.storedKey()
         do {

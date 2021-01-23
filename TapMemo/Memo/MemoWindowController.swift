@@ -10,10 +10,12 @@ import Cocoa
 class MemoWindowController: NSWindowController, NSWindowDelegate {
     
     var isMoved = false
-     
+    var memo: Memo?
+    @IBOutlet weak var savedLabel: NSTextField!
+    
     override func windowDidLoad() {
         super.windowDidLoad()
-        
+        NotificationCenter.default.addObserver(self, selector: #selector(changeStatus), name: .memoStatusDidChange, object: nil)
         // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
     }
     
@@ -21,6 +23,19 @@ class MemoWindowController: NSWindowController, NSWindowDelegate {
         MemoManager.shared.controllers.remove(
             at:MemoManager.shared.controllers.firstIndex(of: self)!
         )
+    }
+    
+    @objc func changeStatus(_ notification:NSNotification) {
+        guard let info = notification.userInfo,
+              let memo = info["memo"] as? Memo
+        else { return }
+        let changed = memo.changed
+        if changed {
+            self.savedLabel.stringValue = "Unsaved"
+        }
+        else {
+            self.savedLabel.stringValue = "Saved"
+        }
     }
     
     @IBAction func pin(_ sender:Any) {

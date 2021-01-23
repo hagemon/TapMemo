@@ -18,6 +18,7 @@ class MemoSideViewController: NSViewController, NSTableViewDataSource, NSTableVi
         // common notification for tool bar item
         NotificationCenter.default.addObserver(self, selector: #selector(self.commonCreateMemo), name: .detailViewDidCreateMemo, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.commonPinMemo), name: .detailViewDidPinMemo, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.updateStatus), name: .memoListStatusDidChange, object: nil)
     }
     
     // MARK: - Datasource and Delegate
@@ -33,9 +34,11 @@ class MemoSideViewController: NSViewController, NSTableViewDataSource, NSTableVi
         }
         let name = cell.viewWithTag(1) as! NSTextField
         let date = cell.viewWithTag(2) as! NSTextField
+        let status = cell.viewWithTag(3) as! NSTextField
         let memo = MemoListManager.shared.memos[row]
         name.stringValue = memo.title
         date.stringValue = memo.date
+        status.stringValue = memo.changed ? "*" : ""
         return cell
     }
     
@@ -71,6 +74,10 @@ class MemoSideViewController: NSViewController, NSTableViewDataSource, NSTableVi
         guard !MemoListManager.shared.isEmpty else {return}
         MemoListManager.shared.index = 0
         self.tableView.selectRowIndexes(IndexSet(integer: 0), byExtendingSelection: false)
+    }
+    
+    @objc func updateStatus() {
+        self.tableView.reloadData(forRowIndexes: IndexSet(integer: self.tableView.selectedRow), columnIndexes: IndexSet(integer: 0))
     }
     
     // MARK: - Notifications

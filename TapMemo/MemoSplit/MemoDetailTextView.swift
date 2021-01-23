@@ -24,9 +24,15 @@ class MemoDetailTextView: NSTextView {
                 super.keyDown(with: event)
                 return
             }
+            MemoListManager.shared.updateSelectedMemo(content: self.string)
             MemoListManager.shared.saveSelectedMemo()
             guard let memo = MemoListManager.shared.selectedMemo() else { return }
             NotificationCenter.default.post(name: .memoListShouldSync, object: nil, userInfo: ["memo":memo])
+            if memo.changed {
+                memo.changed = false
+                NotificationCenter.default.post(name: .memoListStatusDidChange, object: nil, userInfo: ["memo": memo])
+            }
+            
         }
         else {
             super.keyDown(with: event)
@@ -42,7 +48,12 @@ class MemoDetailTextView: NSTextView {
         else { return }
         textStorage.setAttributedString(MDParser.renderAll(storage: textStorage))
         self.setSelectedRange(selectedRange)
-        MemoListManager.shared.updateSelectedMemo(content: self.string)
+        // MemoListManager.shared.updateSelectedMemo(content: self.string)
+        guard let memo = MemoListManager.shared.selectedMemo() else { return }
+        if !memo.changed {
+            memo.changed = true
+            NotificationCenter.default.post(name: .memoListStatusDidChange, object: nil, userInfo: ["memo":memo])
+        }
     }
     
     override var isEditable: Bool {

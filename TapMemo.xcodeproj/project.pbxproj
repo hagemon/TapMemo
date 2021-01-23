@@ -49,6 +49,7 @@
 		3AAA904D25AEC0BF00323743 /* MemoSideViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoSideViewController.swift; sourceTree = "<group>"; };
 		3AAA905025AEC0D600323743 /* MemoDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoDetailViewController.swift; sourceTree = "<group>"; };
 		3AAA905425AF3C3300323743 /* Memo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Memo.swift; sourceTree = "<group>"; };
+		3AB577C225BA96A5002494E1 /* TapMemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TapMemo.entitlements; sourceTree = "<group>"; };
 		3AE1F38725A9653100A38694 /* TapMemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TapMemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3AE1F3A425A9722200A38694 /* Extentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extentions.swift; sourceTree = "<group>"; };
 		3AE1F3A825A9722D00A38694 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
@@ -60,7 +61,6 @@
 		3AE1F3D125A98D3300A38694 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3AE1F3D325A98D3300A38694 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3AE1F3D425A98D3300A38694 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		3AE1F3D525A98D3300A38694 /* Touch_Memo.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = Touch_Memo.entitlements; sourceTree = "<group>"; };
 		3AE1F3D625A98D3300A38694 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3AE1F3E925A9A9A600A38694 /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		3AFB71D225B3E5CA00DE1267 /* RE.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RE.swift; sourceTree = "<group>"; };
@@ -170,7 +170,7 @@
 				3AE1F3D125A98D3300A38694 /* Assets.xcassets */,
 				3AE1F3D225A98D3300A38694 /* Main.storyboard */,
 				3AE1F3D425A98D3300A38694 /* AppDelegate.swift */,
-				3AE1F3D525A98D3300A38694 /* Touch_Memo.entitlements */,
+				3AB577C225BA96A5002494E1 /* TapMemo.entitlements */,
 				3AE1F3D625A98D3300A38694 /* Info.plist */,
 			);
 			path = TapMemo;
