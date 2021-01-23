@@ -44,7 +44,7 @@
             </items>
             <point key="canvasLocation" x="-146" y="138"/>
         </menu>
-        <window identifier="Preferences" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="F0z-JX-Cv5" customClass="PreferencesWindow" customModule="Touch_Memo" customModuleProvider="target">
+        <window identifier="Preferences" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="F0z-JX-Cv5" customClass="PreferencesWindow" customModule="TapMemo" customModuleProvider="target">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <rect key="contentRect" x="196" y="240" width="360" height="180"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1280" height="800"/>
@@ -70,14 +70,6 @@
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sHi-Fz-t7g">
-                        <rect key="frame" x="59" y="125" width="26" height="19"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="recessed" bezelStyle="recessed" image="ToolPinOn" imagePosition="only" alignment="center" alternateImage="ToolPinOff" borderStyle="border" inset="2" id="CEg-ta-cRU">
-                            <behavior key="behavior" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
-                            <font key="font" metaFont="systemBold" size="12"/>
-                        </buttonCell>
-                    </button>
                 </subviews>
             </view>
             <connections>
@@ -86,8 +78,4 @@
             <point key="canvasLocation" x="-288" y="374"/>
         </window>
     </objects>
-    <resources>
-        <image name="ToolPinOff" width="16" height="16"/>
-        <image name="ToolPinOn" width="16" height="16"/>
-    </resources>
 </document>

@@ -23,6 +23,7 @@ class PreferencesWindow: NSWindow {
                     key: Key(carbonKeyCode: UInt32(event.keyCode))!,
                     modifiers: event.modifierFlags
                 )
+                KeyManager.shared.pauseHotKey()
             }
             return nil
         })
