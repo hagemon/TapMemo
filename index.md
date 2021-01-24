@@ -8,7 +8,7 @@ TapMemo is a convenient, clean memo app for macOS.
 
 ### Writing With Memo
 
-<img src="memo.png" width=30%>
+<img src="memo.png" width="30%">
 
 - Try tapping default key `CMD+SHIFT+D` to create a clean memo.
 - Support basic markdown syntax including:
