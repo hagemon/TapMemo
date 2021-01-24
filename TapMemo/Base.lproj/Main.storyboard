@@ -882,44 +882,6 @@
             <point key="canvasLocation" x="1021" y="30"/>
         </scene>
         <!--Window Controller-->
-        <scene sceneID="8o9-Ok-coD">
-            <objects>
-                <windowController id="yD2-jk-C9c" sceneMemberID="viewController">
-                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="GFa-aH-0kE">
-                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
-                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-                        <rect key="contentRect" x="163" y="208" width="480" height="270"/>
-                        <rect key="screenRect" x="0.0" y="0.0" width="1280" height="800"/>
-                        <view key="contentView" id="BZm-ZF-Bpd">
-                            <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
-                            <autoresizingMask key="autoresizingMask"/>
-                        </view>
-                        <connections>
-                            <outlet property="delegate" destination="yD2-jk-C9c" id="fmp-2z-qm9"/>
-                        </connections>
-                    </window>
-                    <connections>
-                        <segue destination="n8e-y3-hlG" kind="relationship" relationship="window.shadowedContentViewController" id="meW-fe-Qe9"/>
-                    </connections>
-                </windowController>
-                <customObject id="rXm-Qh-GdD" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="859" y="469"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="lmM-cX-Fgp">
-            <objects>
-                <viewController id="n8e-y3-hlG" sceneMemberID="viewController">
-                    <view key="view" id="nsS-Hi-4Sx">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </view>
-                </viewController>
-                <customObject id="2N4-AT-b1g" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1464" y="469"/>
-        </scene>
-        <!--Window Controller-->
         <scene sceneID="yxR-8s-CDM">
             <objects>
                 <windowController storyboardIdentifier="Memos" id="jYc-Yu-7bI" customClass="MemoSplitWindowController" customModule="TapMemo" customModuleProvider="target" sceneMemberID="viewController">
@@ -994,7 +956,7 @@
                                     <nil key="toolTip"/>
                                     <textField key="view" horizontalHuggingPriority="251" verticalHuggingPriority="750" id="2ak-26-cbl">
                                         <rect key="frame" x="0.0" y="14" width="61" height="16"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <autoresizingMask key="autoresizingMask"/>
                                         <textFieldCell key="cell" lineBreakMode="clipping" title="Unsaved" id="vXb-M1-PLu">
                                             <font key="font" usesAppearanceFont="YES"/>
                                             <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>

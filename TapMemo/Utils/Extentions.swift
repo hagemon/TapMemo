@@ -34,11 +34,12 @@ extension Date {
 extension Notification.Name {
     static let detailViewShouldUpdate = Notification.Name(rawValue: "detailViewShouldUpdate")
     static let detailViewDidLaunch = Notification.Name(rawValue: "detailViewDidLaunch")
-    static let detailViewDidSave = Notification.Name(rawValue: "detailViewDidSave")
     static let detailViewDidCreateMemo = Notification.Name(rawValue: "detailViewDidCreateMemo")
     static let detailViewDidPinMemo = Notification.Name(rawValue: "detailViewDidPinMemo")
-    static let detailViewTextDidChange = Notification.Name(rawValue: "detailViewTextDidChange")
     static let memoListShouldSync = Notification.Name(rawValue: "memoListShouldSync")
     static let memoStatusDidChange = Notification.Name(rawValue: "memoStatusDidChange")
-    static let memoListStatusDidChange = Notification.Name(rawValue: "memoListStatusDidChange")
+    static let memoContentDidChange = Notification.Name(rawValue: "memoContentDidChange")
+    static let memoListContentDidChange = Notification.Name(rawValue: "memoListContentDidChange")
+    static let memoViewDidSave = Notification.Name(rawValue: "memoViewDidSave")
+    static let memoListViewDidSave = Notification.Name(rawValue: "memoListViewDidSave")
 }

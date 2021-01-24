@@ -32,8 +32,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         if Storage.loadFirstFlag() {
             Storage.saveFirstFlag()
-            self.openHelp()
+            let alert = NSAlert()
+            alert.messageText = "Show usage of our help?"
+            alert.addButton(withTitle: "YES")
+            alert.addButton(withTitle: "NO")
+            if alert.runModal() == .alertFirstButtonReturn {
+                self.openHelp()
+            }
         }
+        
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {

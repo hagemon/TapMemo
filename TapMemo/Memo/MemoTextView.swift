@@ -10,11 +10,7 @@ import Carbon
 
 class MemoTextView: NSTextView {
     
-    var memo: Memo? {
-        didSet {
-            self.refresh()
-        }
-    }
+    var memo: Memo?
     
     var isActive = true {
         didSet {
@@ -30,11 +26,19 @@ class MemoTextView: NSTextView {
     }
     
     func refresh() {
-        guard let storage = self.textStorage,
-              let memo = self.memo
-        else {return}
-        self.string = memo.content
-        storage.setAttributedString(MDParser.renderAll(storage: storage))
+//        guard let storage = self.textStorage,
+//              let memo = self.memo
+//        else {return}
+//        self.string = memo.content
+//        storage.setAttributedString(MDParser.renderAll(storage: storage))
+        let selectedRange = self.selectedRange()
+        for replaced in MDParser.autoOrder(content: self.string) {
+            self.string.replaceSubrange(replaced.range, with: replaced.string)
+        }
+        guard let textStorage = self.textStorage
+        else { return }
+        textStorage.setAttributedString(MDParser.renderAll(storage: textStorage))
+        self.setSelectedRange(selectedRange)
     }
         
     func activate() {
@@ -57,7 +61,7 @@ class MemoTextView: NSTextView {
             memo.changed = false
             // tell memo list memo saved
             NotificationCenter.default.post(name: .memoListShouldSync, object: nil, userInfo: ["memo":memo])
-            NotificationCenter.default.post(name: .memoStatusDidChange, object: nil, userInfo: ["memo": memo])
+            NotificationCenter.default.post(name: .memoViewDidSave, object: nil, userInfo: ["memo":memo])
         }
     }
     
@@ -75,31 +79,41 @@ class MemoTextView: NSTextView {
     override func keyDown(with event: NSEvent) {
         let code = event.keyCode
         let flags = event.modifierFlags
-        if !self.hasMarkedText() && (code == kVK_Escape || (flags.contains(.command) && code == kVK_ANSI_S)) {
+        if flags.contains(.command) && code == kVK_ANSI_W {
+            guard let window = self.window else { return }
+            window.close()
+        }
+        else if !self.hasMarkedText() && (code == kVK_Escape || (flags.contains(.command) && code == kVK_ANSI_S)) {
             self.deactivate()
         } else {
-            guard self.isActive,
-                  let memo = self.memo
-            else { return }
+            guard self.isActive else { return }
+            super.keyDown(with: event)
+            self.refresh()
+            guard let memo = self.memo else {return}
             if !memo.changed {
                 memo.changed = true
-                NotificationCenter.default.post(name: .memoStatusDidChange, object: nil, userInfo: ["memo": memo])
             }
-            super.keyDown(with: event)
+            NotificationCenter.default.post(name: .memoContentDidChange, object: nil, userInfo: ["memo":memo, "string":self.string])
         }
     }
     
-    override func didChangeText() {
-        let selectedRange = self.selectedRange()
-        for replaced in MDParser.autoOrder(content: self.string) {
-            self.string.replaceSubrange(replaced.range, with: replaced.string)
-        }
-        guard let textStorage = self.textStorage
-        else { return }
-        textStorage.setAttributedString(MDParser.renderAll(storage: textStorage))
-        self.setSelectedRange(selectedRange)
-        MemoListManager.shared.updateSelectedMemo(content: self.string)
-    }
+//    override func didChangeText() {
+//        let selectedRange = self.selectedRange()
+//        for replaced in MDParser.autoOrder(content: self.string) {
+//            self.string.replaceSubrange(replaced.range, with: replaced.string)
+//        }
+//        guard let textStorage = self.textStorage
+//        else { return }
+//        textStorage.setAttributedString(MDParser.renderAll(storage: textStorage))
+//        self.setSelectedRange(selectedRange)
+//        guard let memo = self.memo else { return }
+//        if !memo.changed {
+//            memo.changed = true
+//        }
+//        if memo == MemoListManager.shared.selectedMemo() {
+//            MemoListManager.shared.updateSelectedMemo(content: self.string)
+//        }
+//    }
     
     
     override func acceptsFirstMouse(for event: NSEvent?) -> Bool {

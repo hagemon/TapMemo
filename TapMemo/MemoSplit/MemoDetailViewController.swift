@@ -16,6 +16,7 @@ class MemoDetailViewController: NSViewController, NSTextViewDelegate {
         self.textView.font = NSFont.systemFont(ofSize: FONT_LEVELS[0])
         self.updateContent()
         NotificationCenter.default.addObserver(self, selector: #selector(self.updateContent), name: .detailViewShouldUpdate, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.syncMemo(_:)), name: .memoContentDidChange, object: nil)
     }
     
     @objc func updateContent() {
@@ -24,9 +25,17 @@ class MemoDetailViewController: NSViewController, NSTextViewDelegate {
             return
         }
         self.textView.string = memo.content
-        guard let textStorage = self.textView.textStorage
+        self.textView.refresh()
+    }
+    
+    @objc func syncMemo(_ notification:Notification) {
+        guard let info = notification.userInfo,
+              let memo = info["memo"] as? Memo,
+              let string = info["string"] as? String,
+              memo == MemoListManager.shared.selectedMemo()
         else { return }
-        textStorage.setAttributedString(MDParser.renderAll(storage: textStorage))
+        self.textView.string = string
+        self.textView.refresh()
     }
     
     @IBAction func createMemo(_ sender:Any) {

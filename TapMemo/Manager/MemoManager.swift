@@ -34,6 +34,8 @@ class MemoManager: NSObject {
             return
         }
         textView.memo = memo
+        textView.string = memo.content
+        textView.refresh()
         controller.memo = memo
         window.setFrameOrigin(rect.origin)
         self.controllers.append(controller)

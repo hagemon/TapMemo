@@ -41,11 +41,15 @@ class MemoListManager: NSObject {
         memo.update(content: content)
     }
     
-    func saveSelectedMemo() {
+    func storeSelectedMemo() {
         guard let memo = self.selectedMemo() else { return }
         if memo.changed {
             Storage.saveMemo(memo: memo)
         }
+    }
+    
+    func indexOfMemo(memo: Memo) -> Int? {
+        return self.memos.firstIndex(of: memo)
     }
     
     func syncMemo(memo: Memo) {

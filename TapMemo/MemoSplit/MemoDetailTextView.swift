@@ -25,21 +25,24 @@ class MemoDetailTextView: NSTextView {
                 return
             }
             MemoListManager.shared.updateSelectedMemo(content: self.string)
-            MemoListManager.shared.saveSelectedMemo()
+            MemoListManager.shared.storeSelectedMemo()
             guard let memo = MemoListManager.shared.selectedMemo() else { return }
             NotificationCenter.default.post(name: .memoListShouldSync, object: nil, userInfo: ["memo":memo])
             if memo.changed {
                 memo.changed = false
-                NotificationCenter.default.post(name: .memoListStatusDidChange, object: nil, userInfo: ["memo": memo])
             }
+            NotificationCenter.default.post(name: .memoListViewDidSave, object: nil, userInfo: ["memo": memo])
             
         }
         else {
             super.keyDown(with: event)
+            self.refresh(event: event)
+            guard let memo = MemoListManager.shared.selectedMemo() else { return }
+            NotificationCenter.default.post(name: .memoListContentDidChange, object: nil, userInfo: ["memo":memo, "string":self.string])
         }
     }
     
-    override func didChangeText() {
+    func refresh(event: NSEvent? = nil) {
         let selectedRange = self.selectedRange()
         for replaced in MDParser.autoOrder(content: self.string) {
             self.string.replaceSubrange(replaced.range, with: replaced.string)
@@ -50,11 +53,25 @@ class MemoDetailTextView: NSTextView {
         self.setSelectedRange(selectedRange)
         // MemoListManager.shared.updateSelectedMemo(content: self.string)
         guard let memo = MemoListManager.shared.selectedMemo() else { return }
-        if !memo.changed {
+        if event != nil && !memo.changed {
             memo.changed = true
-            NotificationCenter.default.post(name: .memoListStatusDidChange, object: nil, userInfo: ["memo":memo])
         }
     }
+    
+//    override func didChangeText() {
+//        let selectedRange = self.selectedRange()
+//        for replaced in MDParser.autoOrder(content: self.string) {
+//            self.string.replaceSubrange(replaced.range, with: replaced.string)
+//        }
+//        guard let textStorage = self.textStorage
+//        else { return }
+//        textStorage.setAttributedString(MDParser.renderAll(storage: textStorage))
+//        self.setSelectedRange(selectedRange)
+//        // MemoListManager.shared.updateSelectedMemo(content: self.string)
+//        guard let memo = MemoListManager.shared.selectedMemo() else { return }
+//        memo.changed = true
+//        NotificationCenter.default.post(name: .memoListStatusDidChange, object: nil, userInfo: ["memo":memo])
+//    }
     
     override var isEditable: Bool {
         get {

@@ -13,17 +13,17 @@ class MemoViewController: NSViewController, NSTextViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
-        NotificationCenter.default.addObserver(self, selector: #selector(self.syncMemo(_:)), name: .memoListStatusDidChange, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.syncMemo(_:)), name: .memoListContentDidChange, object: nil)
     }
     
     @objc func syncMemo(_ notification:NSNotification) {
         guard let info = notification.userInfo,
-              let memo = info["memo"] as? Memo
+              let string = info["string"] as? String,
+              let memo = info["memo"] as? Memo,
+              self.textView.memo == memo
         else { return }
-        NotificationCenter.default.post(name: .memoStatusDidChange, object: nil, userInfo: ["memo":memo])
-        if !memo.changed {
-            self.textView.memo = memo
-        }
+        self.textView.string = string
+        self.textView.refresh()
     }
     
 }

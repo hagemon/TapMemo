@@ -18,7 +18,7 @@ class MemoSideViewController: NSViewController, NSTableViewDataSource, NSTableVi
         // common notification for tool bar item
         NotificationCenter.default.addObserver(self, selector: #selector(self.commonCreateMemo), name: .detailViewDidCreateMemo, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.commonPinMemo), name: .detailViewDidPinMemo, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.updateStatus), name: .memoListStatusDidChange, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.updateStatus), name: .memoStatusDidChange, object: nil)
     }
     
     // MARK: - Datasource and Delegate
@@ -47,7 +47,7 @@ class MemoSideViewController: NSViewController, NSTableViewDataSource, NSTableVi
     }
     
     func tableView(_ tableView: NSTableView, shouldSelectRow row: Int) -> Bool {
-        MemoListManager.shared.saveSelectedMemo()
+        MemoListManager.shared.storeSelectedMemo()
         MemoListManager.shared.index = row
         self.updateDetailContent()
         return true
@@ -76,8 +76,12 @@ class MemoSideViewController: NSViewController, NSTableViewDataSource, NSTableVi
         self.tableView.selectRowIndexes(IndexSet(integer: 0), byExtendingSelection: false)
     }
     
-    @objc func updateStatus() {
-        self.tableView.reloadData(forRowIndexes: IndexSet(integer: self.tableView.selectedRow), columnIndexes: IndexSet(integer: 0))
+    @objc func updateStatus(_ notification:NSNotification) {
+        guard let info = notification.userInfo,
+              let memo = info["memo"] as? Memo,
+              let index = MemoListManager.shared.indexOfMemo(memo: memo)
+        else { return }
+        self.tableView.reloadData(forRowIndexes: IndexSet(integer: index), columnIndexes: IndexSet(integer: 0))
     }
     
     // MARK: - Notifications
@@ -114,7 +118,7 @@ class MemoSideViewController: NSViewController, NSTableViewDataSource, NSTableVi
             if MemoListManager.shared.memos[0].content.count == 0 {
                 return
             } else {
-                MemoListManager.shared.saveSelectedMemo()
+                MemoListManager.shared.storeSelectedMemo()
             }
         }
         MemoListManager.shared.addMemo(memo: Memo())
@@ -124,7 +128,7 @@ class MemoSideViewController: NSViewController, NSTableViewDataSource, NSTableVi
     
     @objc func commonPinMemo() {
         guard let memo = MemoListManager.shared.selectedMemo() else { return }
-        MemoListManager.shared.saveSelectedMemo()
+        MemoListManager.shared.storeSelectedMemo()
         MemoManager.shared.createMemo(memo: memo)
     }
     

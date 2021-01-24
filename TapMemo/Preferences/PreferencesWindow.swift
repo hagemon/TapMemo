@@ -7,6 +7,7 @@
 
 import Cocoa
 import HotKey
+import Carbon
 
 class PreferencesWindow: NSWindow {
 
@@ -18,6 +19,10 @@ class PreferencesWindow: NSWindow {
         self.keyListener = NSEvent.addLocalMonitorForEvents(matching: .keyDown, handler: {
             event in
             if !event.modifierFlags.isEmpty{
+                if event.modifierFlags.contains(.command) && event.keyCode == kVK_ANSI_W{
+                    self.close()
+                    return nil
+                }
                 self.textField.stringValue = event.modifierFlags.description+event.charactersIgnoringModifiers!
                 KeyManager.shared.register(
                     key: Key(carbonKeyCode: UInt32(event.keyCode))!,
