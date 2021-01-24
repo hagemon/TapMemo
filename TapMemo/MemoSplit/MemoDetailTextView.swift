@@ -15,7 +15,7 @@ class MemoDetailTextView: NSTextView {
 
         // Drawing code here.
     }
-    
+        
     override func keyDown(with event: NSEvent) {
         let code = event.keyCode
         let flags = event.modifierFlags
@@ -36,13 +36,16 @@ class MemoDetailTextView: NSTextView {
         }
         else {
             super.keyDown(with: event)
-            self.refresh(event: event)
+//            self.refresh()
             guard let memo = MemoListManager.shared.selectedMemo() else { return }
+            if !memo.changed {
+                memo.changed = true
+            }
             NotificationCenter.default.post(name: .memoListContentDidChange, object: nil, userInfo: ["memo":memo, "string":self.string])
         }
     }
     
-    func refresh(event: NSEvent? = nil) {
+    func refresh() {
         let selectedRange = self.selectedRange()
         for replaced in MDParser.autoOrder(content: self.string) {
             self.string.replaceSubrange(replaced.range, with: replaced.string)
@@ -51,27 +54,11 @@ class MemoDetailTextView: NSTextView {
         else { return }
         textStorage.setAttributedString(MDParser.renderAll(storage: textStorage))
         self.setSelectedRange(selectedRange)
-        // MemoListManager.shared.updateSelectedMemo(content: self.string)
-        guard let memo = MemoListManager.shared.selectedMemo() else { return }
-        if event != nil && !memo.changed {
-            memo.changed = true
-        }
     }
     
-//    override func didChangeText() {
-//        let selectedRange = self.selectedRange()
-//        for replaced in MDParser.autoOrder(content: self.string) {
-//            self.string.replaceSubrange(replaced.range, with: replaced.string)
-//        }
-//        guard let textStorage = self.textStorage
-//        else { return }
-//        textStorage.setAttributedString(MDParser.renderAll(storage: textStorage))
-//        self.setSelectedRange(selectedRange)
-//        // MemoListManager.shared.updateSelectedMemo(content: self.string)
-//        guard let memo = MemoListManager.shared.selectedMemo() else { return }
-//        memo.changed = true
-//        NotificationCenter.default.post(name: .memoListStatusDidChange, object: nil, userInfo: ["memo":memo])
-//    }
+    override func didChangeText() {
+        self.refresh()
+    }
     
     override var isEditable: Bool {
         get {

@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17701"/>
+        <plugIn identifier="com.apple.WebKit2IBPlugin" version="17701"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -684,7 +685,7 @@
         <!--Memo Split View Controller-->
         <scene sceneID="vMg-V9-Kec">
             <objects>
-                <splitViewController id="u7S-a8-fqD" customClass="MemoSplitViewController" customModule="TapMemo" customModuleProvider="target" sceneMemberID="viewController">
+                <splitViewController showSeguePresentationStyle="single" id="u7S-a8-fqD" customClass="MemoSplitViewController" customModule="TapMemo" customModuleProvider="target" sceneMemberID="viewController">
                     <splitViewItems>
                         <splitViewItem id="xLr-Cj-oOD"/>
                         <splitViewItem id="iK2-eM-u0g"/>
@@ -709,7 +710,7 @@
         <!--Memo Side View Controller-->
         <scene sceneID="ys7-Iz-BDw">
             <objects>
-                <viewController id="YIX-lW-khx" customClass="MemoSideViewController" customModule="TapMemo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController showSeguePresentationStyle="single" id="YIX-lW-khx" customClass="MemoSideViewController" customModule="TapMemo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="fCp-co-apZ">
                         <rect key="frame" x="0.0" y="0.0" width="180" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -830,7 +831,7 @@
         <!--Memo Detail View Controller-->
         <scene sceneID="DoH-wv-aPt">
             <objects>
-                <viewController id="2pz-ld-1VE" customClass="MemoDetailViewController" customModule="TapMemo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController showSeguePresentationStyle="single" id="2pz-ld-1VE" customClass="MemoDetailViewController" customModule="TapMemo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="cDS-cB-cSL">
                         <rect key="frame" x="0.0" y="0.0" width="270" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -882,9 +883,64 @@
             <point key="canvasLocation" x="1021" y="30"/>
         </scene>
         <!--Window Controller-->
+        <scene sceneID="aCy-sd-xF8">
+            <objects>
+                <windowController storyboardIdentifier="Help" showSeguePresentationStyle="single" id="GKB-YX-sbN" sceneMemberID="viewController">
+                    <window key="window" title="Support" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="Vyh-Ke-kKd">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+                        <rect key="contentRect" x="163" y="208" width="480" height="480"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="1280" height="800"/>
+                        <view key="contentView" id="QPQ-gw-r3n">
+                            <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                        </view>
+                        <connections>
+                            <outlet property="delegate" destination="GKB-YX-sbN" id="V7q-ro-HId"/>
+                        </connections>
+                    </window>
+                    <connections>
+                        <segue destination="xPe-OB-jky" kind="relationship" relationship="window.shadowedContentViewController" id="l8s-sR-eYX"/>
+                    </connections>
+                </windowController>
+                <customObject id="MY9-5f-BLQ" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="860" y="573"/>
+        </scene>
+        <!--Help View Controller-->
+        <scene sceneID="M8S-sB-vbN">
+            <objects>
+                <viewController showSeguePresentationStyle="single" id="xPe-OB-jky" customClass="HelpViewController" customModule="TapMemo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="I8Y-iP-12K">
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <wkWebView wantsLayer="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TLl-TW-gXD">
+                                <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="TLl-TW-gXD" firstAttribute="leading" secondItem="I8Y-iP-12K" secondAttribute="leading" id="4Al-82-qaa"/>
+                            <constraint firstAttribute="bottom" secondItem="TLl-TW-gXD" secondAttribute="bottom" id="GcG-WW-t55"/>
+                            <constraint firstItem="TLl-TW-gXD" firstAttribute="top" secondItem="I8Y-iP-12K" secondAttribute="top" id="fWG-br-ZyF"/>
+                            <constraint firstAttribute="trailing" secondItem="TLl-TW-gXD" secondAttribute="trailing" id="jaY-v0-SZP"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="webView" destination="TLl-TW-gXD" id="TTT-fj-Nrh"/>
+                    </connections>
+                </viewController>
+                <customObject id="qgh-GC-uUv" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1482" y="573"/>
+        </scene>
+        <!--Window Controller-->
         <scene sceneID="yxR-8s-CDM">
             <objects>
-                <windowController storyboardIdentifier="Memos" id="jYc-Yu-7bI" customClass="MemoSplitWindowController" customModule="TapMemo" customModuleProvider="target" sceneMemberID="viewController">
+                <windowController storyboardIdentifier="Memos" showSeguePresentationStyle="single" id="jYc-Yu-7bI" customClass="MemoSplitWindowController" customModule="TapMemo" customModuleProvider="target" sceneMemberID="viewController">
                     <window key="window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="BAD-e4-fJb">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>

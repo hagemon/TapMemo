@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3A4E33D425BD35AB0018B5B4 /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4E33D325BD35AB0018B5B4 /* HelpViewController.swift */; };
 		3A5F2BCC25B17F5F00359B76 /* MemoDetailTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5F2BCB25B17F5F00359B76 /* MemoDetailTextView.swift */; };
 		3A5F2BCF25B18D1600359B76 /* MemoSplitWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5F2BCE25B18D1600359B76 /* MemoSplitWindowController.swift */; };
 		3A5F2BD525B2643300359B76 /* MemoListManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5F2BD425B2643300359B76 /* MemoListManager.swift */; };
@@ -36,6 +37,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3A4E33D325BD35AB0018B5B4 /* HelpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpViewController.swift; sourceTree = "<group>"; };
 		3A5F2BCB25B17F5F00359B76 /* MemoDetailTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoDetailTextView.swift; sourceTree = "<group>"; };
 		3A5F2BCE25B18D1600359B76 /* MemoSplitWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoSplitWindowController.swift; sourceTree = "<group>"; };
 		3A5F2BD425B2643300359B76 /* MemoListManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoListManager.swift; sourceTree = "<group>"; };
@@ -78,6 +80,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3A4E33D225BD35930018B5B4 /* Help */ = {
+			isa = PBXGroup;
+			children = (
+				3A4E33D325BD35AB0018B5B4 /* HelpViewController.swift */,
+			);
+			path = Help;
+			sourceTree = "<group>";
+		};
 		3A6F0D7A25AC8D150089BC2F /* Preferences */ = {
 			isa = PBXGroup;
 			children = (
@@ -167,6 +177,7 @@
 				3AE1F3A225A971F300A38694 /* Memo */,
 				3AAA904B25AEC06D00323743 /* MemoSplit */,
 				3A6F0D7A25AC8D150089BC2F /* Preferences */,
+				3A4E33D225BD35930018B5B4 /* Help */,
 				3AE1F3D125A98D3300A38694 /* Assets.xcassets */,
 				3AE1F3D225A98D3300A38694 /* Main.storyboard */,
 				3AE1F3D425A98D3300A38694 /* AppDelegate.swift */,
@@ -273,6 +284,7 @@
 				3A5F2BE425B2D2F600359B76 /* MDParser.swift in Sources */,
 				3AE1F3EA25A9A9A600A38694 /* Protocols.swift in Sources */,
 				3AE1F3A925A9722D00A38694 /* Enums.swift in Sources */,
+				3A4E33D425BD35AB0018B5B4 /* HelpViewController.swift in Sources */,
 				3AE1F3B825A97EA200A38694 /* MemoScrollView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

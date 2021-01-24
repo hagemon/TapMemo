@@ -16,6 +16,8 @@ class MemoSplitWindowController: NSWindowController, NSWindowDelegate {
     
     func windowWillClose(_ notification: Notification) {
         MemoListManager.shared.clearMemos()
+        guard let appDelegate = NSApplication.shared.delegate as? AppDelegate else { return }
+        appDelegate.memoSplitWindowController = nil
     }
     
     override func windowWillLoad() {

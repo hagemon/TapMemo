@@ -24,22 +24,6 @@ class MemoTextView: NSTextView {
 
         // Drawing code here.
     }
-    
-    func refresh() {
-//        guard let storage = self.textStorage,
-//              let memo = self.memo
-//        else {return}
-//        self.string = memo.content
-//        storage.setAttributedString(MDParser.renderAll(storage: storage))
-        let selectedRange = self.selectedRange()
-        for replaced in MDParser.autoOrder(content: self.string) {
-            self.string.replaceSubrange(replaced.range, with: replaced.string)
-        }
-        guard let textStorage = self.textStorage
-        else { return }
-        textStorage.setAttributedString(MDParser.renderAll(storage: textStorage))
-        self.setSelectedRange(selectedRange)
-    }
         
     func activate() {
         self.isActive = true
@@ -55,14 +39,11 @@ class MemoTextView: NSTextView {
         guard let memo = self.memo,
               self.string.count > 0
         else { return }
-        if memo.changed {
-            memo.update(content: self.string)
-            Storage.saveMemo(memo: memo)
-            memo.changed = false
-            // tell memo list memo saved
-            NotificationCenter.default.post(name: .memoListShouldSync, object: nil, userInfo: ["memo":memo])
-            NotificationCenter.default.post(name: .memoViewDidSave, object: nil, userInfo: ["memo":memo])
-        }
+        memo.update(content: self.string)
+        Storage.saveMemo(memo: memo)
+        memo.changed = false
+        NotificationCenter.default.post(name: .memoListShouldSync, object: nil, userInfo: ["memo":memo])
+        NotificationCenter.default.post(name: .memoViewDidSave, object: nil, userInfo: ["memo":memo])
     }
     
     override func mouseDown(with event: NSEvent) {
@@ -86,9 +67,9 @@ class MemoTextView: NSTextView {
         else if !self.hasMarkedText() && (code == kVK_Escape || (flags.contains(.command) && code == kVK_ANSI_S)) {
             self.deactivate()
         } else {
-            guard self.isActive else { return }
+            guard self.isActive
+            else { return }
             super.keyDown(with: event)
-            self.refresh()
             guard let memo = self.memo else {return}
             if !memo.changed {
                 memo.changed = true
@@ -97,23 +78,20 @@ class MemoTextView: NSTextView {
         }
     }
     
-//    override func didChangeText() {
-//        let selectedRange = self.selectedRange()
-//        for replaced in MDParser.autoOrder(content: self.string) {
-//            self.string.replaceSubrange(replaced.range, with: replaced.string)
-//        }
-//        guard let textStorage = self.textStorage
-//        else { return }
-//        textStorage.setAttributedString(MDParser.renderAll(storage: textStorage))
-//        self.setSelectedRange(selectedRange)
-//        guard let memo = self.memo else { return }
-//        if !memo.changed {
-//            memo.changed = true
-//        }
-//        if memo == MemoListManager.shared.selectedMemo() {
-//            MemoListManager.shared.updateSelectedMemo(content: self.string)
-//        }
-//    }
+    func refresh() {
+        let selectedRange = self.selectedRange()
+        for replaced in MDParser.autoOrder(content: self.string) {
+            self.string.replaceSubrange(replaced.range, with: replaced.string)
+        }
+        guard let textStorage = self.textStorage
+        else { return }
+        textStorage.setAttributedString(MDParser.renderAll(storage: textStorage))
+        self.setSelectedRange(selectedRange)
+    }
+    
+    override func didChangeText() {
+        self.refresh()
+    }
     
     
     override func acceptsFirstMouse(for event: NSEvent?) -> Bool {

@@ -20,7 +20,8 @@ class MemoViewController: NSViewController, NSTextViewDelegate {
         guard let info = notification.userInfo,
               let string = info["string"] as? String,
               let memo = info["memo"] as? Memo,
-              self.textView.memo == memo
+              let textViewMemo = self.textView.memo,
+              textViewMemo == memo
         else { return }
         self.textView.string = string
         self.textView.refresh()

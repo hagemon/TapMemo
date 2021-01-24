@@ -12,6 +12,9 @@ import HotKey
 class AppDelegate: NSObject, NSApplicationDelegate {
 
     let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
+    var memoSplitWindowController: MemoSplitWindowController?
+    var preferenceWindowController: NSWindowController?
+    var helpWindowController: NSWindowController?
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
@@ -25,6 +28,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         guard let menu = self.statusItem.menu else { return }
         menu.addItem(withTitle: "Memos", action: #selector(self.openMemos), keyEquivalent: "m")
         menu.addItem(withTitle: "Preferences", action: #selector(self.openPreferences), keyEquivalent: "p")
+        menu.addItem(withTitle: "Help", action: #selector(self.openHelp), keyEquivalent: "h")
         menu.addItem(.separator())
         menu.addItem(withTitle: "Quit", action: #selector(self.exit), keyEquivalent: "q")
         // Storage.removeAllMemos()
@@ -33,14 +37,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         if Storage.loadFirstFlag() {
             Storage.saveFirstFlag()
             let alert = NSAlert()
-            alert.messageText = "Show usage of our help?"
+            alert.messageText = "Show usage of our help? Press YES to open the support page: https://hagemon.github.io/TapMemo"
             alert.addButton(withTitle: "YES")
             alert.addButton(withTitle: "NO")
             if alert.runModal() == .alertFirstButtonReturn {
                 self.openHelp()
             }
-        }
-        
+        }        
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
@@ -52,20 +55,35 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     @objc func openPreferences() {
-        let controller = NSWindowController(windowNibName: "Preferences")
+        if self.preferenceWindowController == nil {
+            let controller = NSWindowController(windowNibName: "Preferences")
+            self.preferenceWindowController = controller
+            controller.showWindow(nil)
+        }
         NSApplication.shared.activate(ignoringOtherApps: true)
-        controller.showWindow(nil)
+
     }
     
     @objc func openMemos() {
-        guard let storyboard = NSStoryboard.main else {return}
-        let windowController = storyboard.instantiateController(withIdentifier: "Memos") as! NSWindowController
+        if self.memoSplitWindowController == nil {
+            guard let storyboard = NSStoryboard.main else {return}
+            let windowController = storyboard.instantiateController(withIdentifier: "Memos") as! MemoSplitWindowController
+            self.memoSplitWindowController = windowController
+            windowController.showWindow(nil)
+        }
         NSApplication.shared.activate(ignoringOtherApps: true)
-        windowController.showWindow(nil)
+
     }
     
     @objc func openHelp() {
-        
+        if self.helpWindowController == nil {
+            guard let storyboard = NSStoryboard.main else { return }
+            let helpWindowController = storyboard.instantiateController(withIdentifier: "Help") as! NSWindowController
+            self.helpWindowController = helpWindowController
+            helpWindowController.showWindow(nil)
+        }
+        NSApplication.shared.activate(ignoringOtherApps: true)
+
     }
 }
 

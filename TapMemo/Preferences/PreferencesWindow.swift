@@ -42,6 +42,8 @@ class PreferencesWindow: NSWindow {
         if self.keyListener != nil {
             NSEvent.removeMonitor(self.keyListener!)
         }
+        guard let appDelegate = NSApplication.shared.delegate as? AppDelegate else { return }
+        appDelegate.preferenceWindowController = nil
         super.close()
     }
     
