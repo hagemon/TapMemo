@@ -64,7 +64,6 @@ class Memo: NSObject, NSCoding {
         self.title = MDParser.getTitle(content: content)
         self.date = Date(timeIntervalSinceNow: 0).toString()
     }
-    
 }
 
 extension Memo {

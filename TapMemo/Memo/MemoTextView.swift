@@ -85,7 +85,7 @@ class MemoTextView: NSTextView {
         }
         guard let textStorage = self.textStorage
         else { return }
-        textStorage.setAttributedString(MDParser.renderAll(storage: textStorage))
+        textStorage.setAttributedString(MDParser.renderAll(content: textStorage.string))
         self.setSelectedRange(selectedRange)
     }
     

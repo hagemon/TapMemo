@@ -24,25 +24,26 @@ class MDParser: NSObject {
     static let bulletRegex = "^-"
     static let orderListBlockRegex = "(?<=(^|\n))([0-9]+\\..*(\n)?)*(?<=(^|\n))([0-9]+\\..*)+"
     static let specielRegex = "(?<=(^|\n))(#{1,3}|[0-9]+\\.|-)"
+    static let paraRegex = "(?<=(^|\n)).*[\n]?"
     
     static func getTitle(content: String) -> String {
         return RE.replace(validateString: content, withContent: "", inRegex: "^#{1,3} +")
     }
     
-    static func renderAll(storage: NSTextStorage) -> NSAttributedString {
-        let result = NSMutableAttributedString(string: storage.string, attributes: self.normalAttribute())
-        let paragraphs = storage.paragraphs
+    static func renderAll(content: String) -> NSAttributedString {
+        let result = NSMutableAttributedString(string: content, attributes: self.normalAttribute())
+        let para = RE.regularExpression(validateString: content, inRegex: self.paraRegex)
         var start = 0
-        for s in paragraphs {
-            guard let range = Range(NSRange(location: 0, length: s.string.utf16.count), in: s.string)
+        for s in para {
+            guard let range = Range(NSRange(location: 0, length: s.utf16.count), in: s)
             else {continue}
-            let rendered = self.render(content: s.string, with: range)
+            let rendered = self.render(content: s, with: range)
             for i in 0..<rendered.attributes.count {
                 let renderedRange = rendered.attributedRanges[i]
                 let range = NSRange(location: start+renderedRange.location, length: renderedRange.length)
                 result.addAttributes(rendered.attributes[i], range: range)
             }
-            start += s.string.utf16.count
+            start += s.utf16.count
         }
         return result
     }
