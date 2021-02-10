@@ -28,7 +28,7 @@ class Memo: NSObject, NSCoding {
     }
     
     override init() {
-        self.title = "No Title"
+        self.title = "Title"
         self.date = Date(timeIntervalSinceNow: 0).toString()
         self.content = ""
         self.uuid = UUID().uuidString
