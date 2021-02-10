@@ -13,7 +13,7 @@ class MemoManager: NSObject {
     var controllers: [MemoWindowController] = []
     let offset:CGFloat = 30
     
-    func createMemo(memo: Memo=Memo()) {
+    func postMemo(memo: CoreMemo=CoreUtil.createMemo()) {
         guard let rect = self.defaultRect() else {
             print("Could not get default rect in MemoManager.createMemo")
             return
@@ -34,13 +34,21 @@ class MemoManager: NSObject {
             return
         }
         textView.memo = memo
-        textView.string = memo.content
+        textView.string = memo.content!
         textView.refresh()
         controller.memo = memo
         window.setFrameOrigin(rect.origin)
         self.controllers.append(controller)
         NSApplication.shared.activate(ignoringOtherApps: true)
         controller.showWindow(nil)
+    }
+    
+    func removeMemo(memo: CoreMemo) {
+        for controller in self.controllers {
+            if memo == controller.memo {
+                controller.close()
+            }
+        }
     }
     
     private func defaultRect() -> NSRect? {

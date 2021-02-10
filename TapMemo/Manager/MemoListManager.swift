@@ -9,7 +9,7 @@ import Cocoa
 
 class MemoListManager: NSObject {
     static let shared = MemoListManager()
-    var memos: [Memo] = []
+    var memos: [CoreMemo] = []
     var index = 0
     var isEmpty: Bool {
         get {
@@ -22,14 +22,15 @@ class MemoListManager: NSObject {
     }
     
     func loadMemos() {
-        self.memos = Storage.getMemos()
+//        self.memos = Storage.getMemos()
+        self.memos = CoreUtil.getCoreMemos()
     }
     
-    func addMemo(memo: Memo) {
+    func addMemo(memo: CoreMemo) {
         self.memos.insert(memo, at: 0)
     }
     
-    func selectedMemo() -> Memo? {
+    func selectedMemo() -> CoreMemo? {
         guard memos.count > self.index else {
             return nil
         }
@@ -43,16 +44,17 @@ class MemoListManager: NSObject {
     
     func storeSelectedMemo() {
         guard let memo = self.selectedMemo() else { return }
-        if memo.changed {
-            Storage.saveMemo(memo: memo)
+        if memo.hasChanges {
+//            Storage.saveMemo(memo: memo)
+            CoreUtil.save()
         }
     }
     
-    func indexOfMemo(memo: Memo) -> Int? {
+    func indexOfMemo(memo: CoreMemo) -> Int? {
         return self.memos.firstIndex(of: memo)
     }
     
-    func syncMemo(memo: Memo) {
+    func syncMemo(memo: CoreMemo) {
         if self.memos.contains(memo) {
             guard let index = self.memos.firstIndex(of: memo) else {return}
             self.memos.remove(at: index)
@@ -62,7 +64,7 @@ class MemoListManager: NSObject {
             if self.isEmpty {
                 self.memos.insert(memo, at: 0)
             } else {
-                if self.memos[0].content.count == 0 {
+                if self.memos[0].content!.count == 0 {
                     self.memos[0] = memo
                 }
                 else {
@@ -73,18 +75,21 @@ class MemoListManager: NSObject {
         self.index = 0
     }
     
-    func removeSelectedMemo() {
+    func removeSelectedMemo(){
         guard let memo = self.selectedMemo() else { return }
-        Storage.removeMemo(memo: memo)
+//        Storage.removeMemo(memo: memo)
+        CoreUtil.removeMemo(memo: memo)
         self.memos.remove(at: self.index)
         self.index = 0
     }
     
-    func removeMemo(at index:Int) {
-        guard index < self.memos.count && index >= 0 else {return}
+    func removeMemo(at index:Int) -> CoreMemo?  {
+        guard index < self.memos.count && index >= 0 else {return nil}
         let memo = self.memos[index]
-        Storage.removeMemo(memo: memo)
+//        Storage.removeMemo(memo: memo)
+        CoreUtil.removeMemo(memo: memo)
         self.memos.remove(at: index)
         self.index = 0
+        return memo
     }
 }

@@ -28,9 +28,6 @@ class MemoDetailTextView: NSTextView {
             MemoListManager.shared.storeSelectedMemo()
             guard let memo = MemoListManager.shared.selectedMemo() else { return }
             NotificationCenter.default.post(name: .memoListShouldSync, object: nil, userInfo: ["memo":memo])
-            if memo.changed {
-                memo.changed = false
-            }
             NotificationCenter.default.post(name: .memoListViewDidSave, object: nil, userInfo: ["memo": memo])
             
         }
@@ -38,9 +35,6 @@ class MemoDetailTextView: NSTextView {
             super.keyDown(with: event)
 //            self.refresh()
             guard let memo = MemoListManager.shared.selectedMemo() else { return }
-            if !memo.changed {
-                memo.changed = true
-            }
             NotificationCenter.default.post(name: .memoListContentDidChange, object: nil, userInfo: ["memo":memo, "string":self.string])
         }
     }

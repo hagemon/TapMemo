@@ -16,4 +16,8 @@ extension CoreMemo {
         self.setValue(Date.now().toString(), forKey: "date")
     }
     
+    static func == (a: CoreMemo, b: CoreMemo) -> Bool {
+        return a.uuid == b.uuid
+    }
+    
 }

@@ -11,7 +11,7 @@ import CoreData
 final class CoreUtil: NSObject {
     static let context = (NSApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
-    static func createMemo(title: String, content: String, date: Date) -> CoreMemo {
+    static func createMemo(title: String="", content: String="# ", date: Date=Date.now()) -> CoreMemo {
         let entity = NSEntityDescription.entity(forEntityName: "CoreMemo", in: self.context)
         let memo = NSManagedObject(entity: entity!, insertInto: self.context) as! CoreMemo
         memo.setValue(UUID().uuidString, forKey: "uuid")
@@ -27,6 +27,7 @@ final class CoreUtil: NSObject {
             try self.context.save()
         } catch {
             print("Store failed")
+            print(error)
         }
     }
     

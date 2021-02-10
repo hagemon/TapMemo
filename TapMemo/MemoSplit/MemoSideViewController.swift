@@ -36,9 +36,9 @@ class MemoSideViewController: NSViewController, NSTableViewDataSource, NSTableVi
         let date = cell.viewWithTag(2) as! NSTextField
         let status = cell.viewWithTag(3) as! NSTextField
         let memo = MemoListManager.shared.memos[row]
-        name.stringValue = memo.title
-        date.stringValue = memo.date
-        status.stringValue = memo.changed ? "*" : ""
+        name.stringValue = memo.title!
+        date.stringValue = memo.date!
+        status.stringValue = memo.hasChanges ? "*" : ""
         return cell
     }
     
@@ -61,7 +61,9 @@ class MemoSideViewController: NSViewController, NSTableViewDataSource, NSTableVi
         guard edge == .trailing else {return []}
         let action = NSTableViewRowAction(style: .destructive, title: "Delete", handler: {
             _, row in
-            MemoListManager.shared.removeMemo(at: row)
+            if let memo = MemoListManager.shared.removeMemo(at: row) {
+                MemoManager.shared.removeMemo(memo: memo)
+            }
             self.tableView.removeRows(at: IndexSet(integer: row), withAnimation: .effectFade)
             self.selectFirstCell()
         })
@@ -78,7 +80,7 @@ class MemoSideViewController: NSViewController, NSTableViewDataSource, NSTableVi
     
     @objc func updateStatus(_ notification:NSNotification) {
         guard let info = notification.userInfo,
-              let memo = info["memo"] as? Memo,
+              let memo = info["memo"] as? CoreMemo,
               let index = MemoListManager.shared.indexOfMemo(memo: memo)
         else { return }
         self.tableView.reloadData(forRowIndexes: IndexSet(integer: index), columnIndexes: IndexSet(integer: 0))
@@ -93,7 +95,7 @@ class MemoSideViewController: NSViewController, NSTableViewDataSource, NSTableVi
     // Called after storage
     @objc func syncStoredMemo(_ notification:Notification) {
         guard let info = notification.userInfo,
-              let memo = info["memo"] as? Memo
+              let memo = info["memo"] as? CoreMemo
         else {
             print("Could not load info when memo saved")
             return
@@ -115,13 +117,13 @@ class MemoSideViewController: NSViewController, NSTableViewDataSource, NSTableVi
     
     @objc func commonCreateMemo() {
         if MemoListManager.shared.memos.count > 0 {
-            if MemoListManager.shared.memos[0].content.count == 0 {
+            if MemoListManager.shared.memos[0].content!.count == 0 {
                 return
             } else {
                 MemoListManager.shared.storeSelectedMemo()
             }
         }
-        MemoListManager.shared.addMemo(memo: Memo())
+        MemoListManager.shared.addMemo(memo: CoreUtil.createMemo())
         self.selectFirstCell()
         self.tableView.reloadData()
     }
@@ -129,7 +131,7 @@ class MemoSideViewController: NSViewController, NSTableViewDataSource, NSTableVi
     @objc func commonPinMemo() {
         guard let memo = MemoListManager.shared.selectedMemo() else { return }
         MemoListManager.shared.storeSelectedMemo()
-        MemoManager.shared.createMemo(memo: memo)
+        MemoManager.shared.postMemo(memo: memo)
     }
     
 }

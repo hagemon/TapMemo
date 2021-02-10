@@ -19,7 +19,7 @@ class MemoViewController: NSViewController, NSTextViewDelegate {
     @objc func syncMemo(_ notification:NSNotification) {
         guard let info = notification.userInfo,
               let string = info["string"] as? String,
-              let memo = info["memo"] as? Memo,
+              let memo = info["memo"] as? CoreMemo,
               let textViewMemo = self.textView.memo,
               textViewMemo == memo
         else { return }

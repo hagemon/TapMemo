@@ -10,7 +10,7 @@ import Carbon
 
 class MemoTextView: NSTextView {
     
-    var memo: Memo?
+    var memo: CoreMemo?
     
     var isActive = true {
         didSet {
@@ -40,8 +40,8 @@ class MemoTextView: NSTextView {
               self.string.count > 0
         else { return }
         memo.update(content: self.string)
-        Storage.saveMemo(memo: memo)
-        memo.changed = false
+//        Storage.saveMemo(memo: memo)
+        CoreUtil.save()
         NotificationCenter.default.post(name: .memoListShouldSync, object: nil, userInfo: ["memo":memo])
         NotificationCenter.default.post(name: .memoViewDidSave, object: nil, userInfo: ["memo":memo])
     }
@@ -71,9 +71,6 @@ class MemoTextView: NSTextView {
             else { return }
             super.keyDown(with: event)
             guard let memo = self.memo else {return}
-            if !memo.changed {
-                memo.changed = true
-            }
             NotificationCenter.default.post(name: .memoContentDidChange, object: nil, userInfo: ["memo":memo, "string":self.string])
         }
     }

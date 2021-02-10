@@ -24,13 +24,13 @@ class MemoDetailViewController: NSViewController, NSTextViewDelegate {
             self.textView.string = ""
             return
         }
-        self.textView.string = memo.content
+        self.textView.string = memo.content!
         self.textView.refresh()
     }
     
     @objc func syncMemo(_ notification:Notification) {
         guard let info = notification.userInfo,
-              let memo = info["memo"] as? Memo,
+              let memo = info["memo"] as? CoreMemo,
               let string = info["string"] as? String,
               memo == MemoListManager.shared.selectedMemo()
         else { return }

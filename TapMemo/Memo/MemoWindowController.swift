@@ -10,7 +10,7 @@ import Cocoa
 class MemoWindowController: NSWindowController, NSWindowDelegate {
     
     var isMoved = false
-    var memo: Memo?
+    var memo: CoreMemo?
     @IBOutlet weak var savedLabel: NSTextField!
     
     override func windowDidLoad() {
@@ -23,14 +23,15 @@ class MemoWindowController: NSWindowController, NSWindowDelegate {
         MemoManager.shared.controllers.remove(
             at:MemoManager.shared.controllers.firstIndex(of: self)!
         )
+        CoreUtil.save()
     }
     
     @objc func changeStatus(_ notification:NSNotification) {
         guard let info = notification.userInfo,
-              let memo = info["memo"] as? Memo,
+              let memo = info["memo"] as? CoreMemo,
               memo == self.memo
         else { return }
-        let changed = memo.changed
+        let changed = memo.hasChanges
         if changed {
             self.savedLabel.stringValue = "Unsaved"
         }

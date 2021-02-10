@@ -14,7 +14,7 @@ class KeyManager: NSObject {
     
     func register(key:Key, modifiers: NSEvent.ModifierFlags) {
         self.hotKey = HotKey(key: key, modifiers: modifiers, keyDownHandler: {
-            MemoManager.shared.createMemo()
+            MemoManager.shared.postMemo()
         })
         Storage.saveKey(key: key)
         Storage.saveModifierFlags(modifiers: modifiers)
