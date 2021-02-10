@@ -33,7 +33,6 @@ class MemoDetailTextView: NSTextView {
         }
         else {
             super.keyDown(with: event)
-//            self.refresh()
             guard let memo = MemoListManager.shared.selectedMemo() else { return }
             NotificationCenter.default.post(name: .memoListContentDidChange, object: nil, userInfo: ["memo":memo, "string":self.string])
         }

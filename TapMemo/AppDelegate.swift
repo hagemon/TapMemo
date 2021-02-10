@@ -43,7 +43,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             if alert.runModal() == .alertFirstButtonReturn {
                 self.openHelp()
             }
-        }        
+        }
+        
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
@@ -102,6 +103,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let options = NSPersistentCloudKitContainerOptions(containerIdentifier: id)
         description.cloudKitContainerOptions = options
         description.setOption(true as NSNumber, forKey: NSPersistentHistoryTrackingKey)
+        description.setOption(true as NSNumber, forKey: NSPersistentStoreRemoteChangeNotificationPostOptionKey)
         container.persistentStoreDescriptions = [description]
         container.loadPersistentStores(completionHandler: {
             (storeDescription, error) in
@@ -109,6 +111,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 fatalError("Unresolved error \(error), \(error.userInfo)")
             }
         })
+//        container.viewContext.automaticallyMergesChangesFromParent = true
         return container
     }()
 

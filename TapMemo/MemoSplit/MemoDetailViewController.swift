@@ -46,4 +46,8 @@ class MemoDetailViewController: NSViewController, NSTextViewDelegate {
         NotificationCenter.default.post(name: .detailViewDidPinMemo, object: nil)
     }
     
+    override func viewWillDisappear() {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
 }

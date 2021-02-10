@@ -19,6 +19,12 @@ class MemoSideViewController: NSViewController, NSTableViewDataSource, NSTableVi
         NotificationCenter.default.addObserver(self, selector: #selector(self.commonCreateMemo), name: .detailViewDidCreateMemo, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.commonPinMemo), name: .detailViewDidPinMemo, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.updateStatus), name: .memoStatusDidChange, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.syncRemote(_:)), name: .NSPersistentStoreRemoteChange, object: (NSApplication.shared.delegate as! AppDelegate).persistentContainer.persistentStoreCoordinator)
+//        NotificationCenter.default.addObserver(self, selector: #selector(self.test(_:)), name: .NSManagedObjectContextObjectsDidChange, object: nil)
+    }
+    
+    override func viewDidDisappear() {
+        NotificationCenter.default.removeObserver(self)
     }
     
     // MARK: - Datasource and Delegate
@@ -104,6 +110,48 @@ class MemoSideViewController: NSViewController, NSTableViewDataSource, NSTableVi
         self.selectFirstCell()
         self.tableView.reloadData()
     }
+    
+    @objc func test(_ notification: Notification) {
+        guard let info = notification.userInfo,
+              let update = info["updated"]
+        else {return}
+        print(update)
+    }
+    
+    @objc func syncRemote(_ notification:Notification) {
+        guard let info = notification.userInfo,
+              let token = info["historyToken"] as? NSPersistentHistoryToken,
+              token != CoreUtil.lastToken
+        else {
+            return
+        }
+        let fetchHistoryRequest = NSPersistentHistoryChangeRequest.fetchHistory(after: CoreUtil.lastToken)
+        CoreUtil.lastToken = token
+        let context = CoreUtil.container.viewContext
+        guard
+            let historyResult = try? context.execute(fetchHistoryRequest)
+                as? NSPersistentHistoryResult,
+            let history = historyResult.result as? [NSPersistentHistoryTransaction]
+            else {
+                fatalError("Could not convert history result to transactions.")
+        }
+        guard history.count > 0,
+              let trans = history.last
+        else {
+            return
+        }
+        context.perform {
+            context.mergeChanges(fromContextDidSave: trans.objectIDNotification())
+            DispatchQueue.main.async {
+                [unowned self] in
+                self.tableView.reloadData()
+                self.updateDetailContent()
+                guard let memo = MemoListManager.shared.selectedMemo() else { return }
+                NotificationCenter.default.post(name: .memoListContentDidChange, object: nil, userInfo: ["memo": memo, "string": memo.content!])
+            }
+        }
+    }
+
     
     // MARK: - Toolbar Actions
     
