@@ -27,7 +27,8 @@ class MDParser: NSObject {
     static let paraRegex = "(?<=(^|\n)).*[\n]?"
     
     static func getTitle(content: String) -> String {
-        return RE.replace(validateString: content, withContent: "", inRegex: "^#{1,3} +")
+        guard let title = RE.regularExpression(validateString: content, inRegex: "^#{1,3} +.*\n?").first else {return ""}
+        return RE.replace(validateString: title, withContent: "", inRegex: "^#{1,3} +")
     }
     
     static func renderAll(content: String) -> NSAttributedString {

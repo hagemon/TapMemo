@@ -20,7 +20,6 @@ class MemoSideViewController: NSViewController, NSTableViewDataSource, NSTableVi
         NotificationCenter.default.addObserver(self, selector: #selector(self.commonPinMemo), name: .detailViewDidPinMemo, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.updateStatus), name: .memoStatusDidChange, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.syncRemote(_:)), name: .NSPersistentStoreRemoteChange, object: (NSApplication.shared.delegate as! AppDelegate).persistentContainer.persistentStoreCoordinator)
-//        NotificationCenter.default.addObserver(self, selector: #selector(self.test(_:)), name: .NSManagedObjectContextObjectsDidChange, object: nil)
     }
     
     override func viewDidDisappear() {
@@ -109,13 +108,6 @@ class MemoSideViewController: NSViewController, NSTableViewDataSource, NSTableVi
         MemoListManager.shared.syncMemo(memo: memo)
         self.selectFirstCell()
         self.tableView.reloadData()
-    }
-    
-    @objc func test(_ notification: Notification) {
-        guard let info = notification.userInfo,
-              let update = info["updated"]
-        else {return}
-        print(update)
     }
     
     @objc func syncRemote(_ notification:Notification) {
