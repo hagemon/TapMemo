@@ -26,6 +26,7 @@ class MemoDetailTextView: NSTextView {
             }
             MemoListManager.shared.updateSelectedMemo(content: self.string)
             MemoListManager.shared.storeSelectedMemo()
+            MemoListManager.shared.setSelectedStatus(status: false)
             guard let memo = MemoListManager.shared.selectedMemo() else { return }
             NotificationCenter.default.post(name: .memoListShouldSync, object: nil, userInfo: ["memo":memo])
             NotificationCenter.default.post(name: .memoListViewDidSave, object: nil, userInfo: ["memo": memo])
@@ -33,6 +34,7 @@ class MemoDetailTextView: NSTextView {
         }
         else {
             super.keyDown(with: event)
+            MemoListManager.shared.setSelectedStatus(status: true)
             guard let memo = MemoListManager.shared.selectedMemo() else { return }
             NotificationCenter.default.post(name: .memoListContentDidChange, object: nil, userInfo: ["memo":memo, "string":self.string])
         }

@@ -43,7 +43,7 @@ class MemoSideViewController: NSViewController, NSTableViewDataSource, NSTableVi
         let memo = MemoListManager.shared.memos[row]
         name.stringValue = memo.title!
         date.stringValue = memo.date!
-        status.stringValue = memo.hasChanges ? "*" : ""
+        status.stringValue = MemoListManager.shared.memoStatus[row] ? "*" : ""
         return cell
     }
     

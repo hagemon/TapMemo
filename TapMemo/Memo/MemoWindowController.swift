@@ -29,9 +29,9 @@ class MemoWindowController: NSWindowController, NSWindowDelegate {
     @objc func changeStatus(_ notification:NSNotification) {
         guard let info = notification.userInfo,
               let memo = info["memo"] as? CoreMemo,
+              let changed = info["changed"] as? Bool,
               memo == self.memo
         else { return }
-        let changed = memo.hasChanges
         if changed {
             self.savedLabel.stringValue = "Unsaved"
         }

@@ -15,7 +15,7 @@ class Memo: NSObject, NSCoding {
     var changed = false {
         didSet {
             if oldValue != self.changed {
-                NotificationCenter.default.post(name: .memoStatusDidChange, object: nil, userInfo: ["memo":self])
+                NotificationCenter.default.post(name: .memoStatusDidChange, object: nil, userInfo: ["memo":self, "changed": self.changed])
             }
         }
     }

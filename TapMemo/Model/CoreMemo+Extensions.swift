@@ -19,5 +19,4 @@ extension CoreMemo {
     static func == (a: CoreMemo, b: CoreMemo) -> Bool {
         return a.uuid == b.uuid
     }
-    
 }
