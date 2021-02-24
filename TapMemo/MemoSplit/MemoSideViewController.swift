@@ -136,6 +136,7 @@ class MemoSideViewController: NSViewController, NSTableViewDataSource, NSTableVi
             context.mergeChanges(fromContextDidSave: trans.objectIDNotification())
             DispatchQueue.main.async {
                 [unowned self] in
+                print("update from remote")
                 self.tableView.reloadData()
                 self.updateDetailContent()
                 guard let memo = MemoListManager.shared.selectedMemo() else { return }

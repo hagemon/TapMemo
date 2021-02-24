@@ -17,9 +17,9 @@ extension Date {
     func toString() -> String{
         let dateFormatter = DateFormatter()
         if self.is24Hour() {
-            dateFormatter.dateFormat = "YYYY-MM-dd HH:mm:ss"
+            dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         } else {
-            dateFormatter.dateFormat = "YYYY-MM-dd hh:mm:ss a"
+            dateFormatter.dateFormat = "yyyy-MM-dd hh:mm:ss a"
         }
         let string = dateFormatter.string(from: self)
         return string
