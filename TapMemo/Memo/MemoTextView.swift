@@ -42,7 +42,8 @@ class MemoTextView: NSTextView {
         memo.update(content: self.string)
 //        Storage.saveMemo(memo: memo)
         CoreUtil.save()
-        MemoListManager.shared.setMemoStatus(memo: memo, status: false)
+        memo.changed = false
+//        MemoListManager.shared.setMemoStatus(memo: memo, status: false)
         NotificationCenter.default.post(name: .memoListShouldSync, object: nil, userInfo: ["memo":memo])
         NotificationCenter.default.post(name: .memoViewDidSave, object: nil, userInfo: ["memo":memo])
     }
@@ -72,7 +73,8 @@ class MemoTextView: NSTextView {
             else { return }
             super.keyDown(with: event)
             guard let memo = self.memo else {return}
-            MemoListManager.shared.setMemoStatus(memo: memo, status: true)
+            memo.changed = true
+//            MemoListManager.shared.setMemoStatus(memo: memo, status: true)
             NotificationCenter.default.post(name: .memoContentDidChange, object: nil, userInfo: ["memo":memo, "string":self.string])
         }
     }
